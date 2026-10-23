@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#102b45">
+<title>Aadhaar Centre | NBCE South Salmara</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+:root{--navy:#102b45;--blue:#2563eb;--bg:#f5f7fb;--ink:#172b42;--muted:#687b91;--line:#dbe3ed;--green:#087f5b}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px Inter,Segoe UI,Arial,sans-serif}
+a{text-decoration:none;color:inherit}
+header{background:#fff;border-bottom:1px solid var(--line)}
+.header-inner{max-width:1080px;margin:auto;padding:16px 22px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.brand{display:flex;align-items:center;gap:14px;min-width:0}
+.brand img{width:62px;height:62px;object-fit:contain}
+.brand strong{display:block;color:var(--navy);font-size:18px}
+.brand small{display:block;color:var(--muted);font-size:12px;margin-top:4px;letter-spacing:.6px}
+.home-btn,.directions{display:inline-flex;align-items:center;justify-content:center;border-radius:9px;padding:10px 14px;font-size:13px;font-weight:700}
+.home-btn{background:#edf3fa;color:var(--navy)}
+main{max-width:1080px;margin:auto;padding:26px 22px 32px}
+h1{font-size:clamp(24px,4vw,32px);margin:0 0 8px;color:var(--navy);letter-spacing:-.7px}
+.lead{margin:0;color:var(--muted);line-height:1.6}
+.status-row{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:22px 0;background:linear-gradient(110deg,#eaf3ff,#f0fbf6);border:1.5px solid #b8d2f2;border-left:5px solid #2563eb;border-radius:12px;padding:18px 20px;box-shadow:0 4px 12px rgba(37,99,235,.07)}
+.status-row strong{display:block;color:var(--navy);margin-bottom:6px;font-size:16px}.status-info small{display:block;color:#405a75;font-size:13px;font-weight:600}
+.status-row small{color:var(--muted)}
+.status{display:inline-flex;align-items:center;gap:8px;background:#d4f8e3;color:#075b35;border:1px solid #8cdbad;padding:11px 14px;border-radius:9px;font-size:14px;font-weight:800;box-shadow:0 2px 5px rgba(8,127,91,.08)}
+.status.closed{background:#ffe3e5;color:#a71930;border-color:#f1aab2;box-shadow:0 2px 5px rgba(167,25,48,.07)}
+.status-dot{width:8px;height:8px;border-radius:50%;background:#16a05d}
+.status.closed .status-dot{background:#dc2626}
+.section-title{font-size:20px;margin:26px 0 14px;color:var(--navy)}
+.services{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.service{display:flex;align-items:center;gap:16px;background:#fff;border:2px solid #c7d8ec;border-radius:15px;padding:22px;min-height:142px;transition:transform .15s,border-color .15s,box-shadow .15s;box-shadow:0 4px 12px rgba(16,43,69,.06)}
+.service:hover{border-color:#2563eb;box-shadow:0 8px 20px rgba(16,43,69,.10);transform:translateY(-2px)}
+.service-icon{width:60px;height:60px;flex:0 0 60px;display:grid;place-items:center;background:#e5efff;border-radius:13px;font-size:29px}
+.service h3{font-size:19px;margin:0 0 7px;color:var(--navy)}
+.service p{font-size:14px;line-height:1.55;margin:0;color:#53677d}
+.arrow{margin-left:auto;color:var(--blue);font-size:28px;font-weight:700;flex-shrink:0}
+.location{margin-top:24px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px}
+.location h2{font-size:18px;margin:0 0 10px;color:var(--navy)}
+.address{line-height:1.65;margin:0 0 14px;color:#43566b}
+.directions{background:var(--navy);color:#fff}
+footer{max-width:1080px;margin:0 auto;padding:0 22px 22px;color:#8491a0;font-size:12px}
+@media(max-width:620px){.header-inner{padding:12px 14px;align-items:center}.brand img{width:50px;height:50px}.brand strong{font-size:15px}.brand small{font-size:10px}.home-btn{font-size:12px;padding:9px}.header-inner{gap:8px}main{padding:20px 14px 26px}.status-row{align-items:flex-start;flex-direction:column}.services{grid-template-columns:1fr}.service{padding:18px;min-height:126px}.service-icon{width:54px;height:54px;flex-basis:54px;font-size:26px}.service h3{font-size:18px}.location{padding:17px}footer{padding:0 14px 20px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <a class="brand" href="home.html">
+      <img src="logo.png" alt="NBCE South Salmara logo">
+      <span><strong>NBCE South Salmara</strong><small>DIGITAL SERVICE CENTRE</small></span>
+    </a>
+    <a class="home-btn" href="home.html">← Home</a>
+  </div>
+</header>
+<main>
+  <h1>Aadhaar Centre</h1>
+
+  <section class="status-row" aria-label="Centre status">
+    <div class="status-info"><strong>Centre Status</strong><small>Working days: Monday to Saturday</small></div>
+    <div id="todayStatus" class="status"><span class="status-dot"></span><span id="statusText">Checking status…</span></div>
+  </section>
+
+  <section>
+    <h2 class="section-title">Choose a Service</h2>
+    <div class="services">
+      <a class="service" href="aadher_check.html">
+        <div class="service-icon" aria-hidden="true">🔎</div>
+        <div><h3>Aadhaar Check</h3><p>Click here to submit your Aadhaar check request.</p><span style="display:inline-block;margin-top:9px;color:#1d4ed8;font-size:12px;font-weight:800">OPEN SERVICE →</span></div>
+        <span class="arrow" aria-hidden="true">›</span>
+      </a>
+      <a class="service" href="aadher_download.html">
+        <div class="service-icon" aria-hidden="true">⬇️</div>
+        <div><h3>Download Aadhaar</h3><p>Upload your receipt photo and enter your WhatsApp number.</p><span style="display:inline-block;margin-top:9px;color:#1d4ed8;font-size:12px;font-weight:800">OPEN SERVICE →</span></div>
+        <span class="arrow" aria-hidden="true">›</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="location">
+    <h2>Visit Our Centre</h2>
+    <p class="address"><strong>NBCE SOUTH SALMARA</strong><br>NBCE, Tumni, Tumni Simlakandi, Assam 794104</p>
+    <a class="directions" target="_blank" rel="noopener noreferrer" href="https://www.google.com/maps/search/?api=1&query=NBCE%2C%20Tumni%2C%20Tumni%20Simlakandi%2C%20Assam%20794104">Get Directions ↗</a>
+  </section>
+</main>
+
+<script>
+(function(){
+  // Assam holiday list for 2026. Update from the official notification each year.
+  const holidays2026 = {
+    "2026-01-14":"Magh Bihu & Tusu Puja","2026-01-15":"Magh Bihu holiday",
+    "2026-01-23":"Netaji's Birthday","2026-01-26":"Republic Day",
+    "2026-01-27":"Gwthar Bathou San","2026-01-31":"Me-Dam-Me-Phi",
+    "2026-02-01":"Bir Chilaray Divas","2026-03-03":"Dol Jatra",
+    "2026-03-21":"Id-Ul-Fitr","2026-04-03":"Good Friday",
+    "2026-04-14":"Bohag Bihu holiday","2026-04-15":"Bohag Bihu",
+    "2026-04-16":"Bohag Bihu holiday","2026-04-18":"Tithi of Damodar Deva",
+    "2026-04-21":"Sati Sadhini Divas","2026-05-01":"May Day & Buddha Purnima",
+    "2026-05-27":"Id-ul-Zuha","2026-06-01":"Janmotsav of Sri Sri Madhabdeva",
+    "2026-08-15":"Independence Day","2026-09-01":"Tirubhav Tithi of Sri Sri Madhabdeva",
+    "2026-09-04":"Janmastomi","2026-09-12":"Tirubhav Tithi of Srimanta Sankardeva",
+    "2026-09-21":"Janmotsav of Srimanta Sankardeva","2026-09-22":"Karam Puja",
+    "2026-10-02":"Mahatma Gandhi's Birthday","2026-10-18":"Kati Bihu & Durga Puja",
+    "2026-10-19":"Durga Puja & Vijaya Dashami","2026-10-20":"Durga Puja & Vijaya Dashami",
+    "2026-10-21":"Durga Puja holiday","2026-11-08":"Kali Puja & Diwali",
+    "2026-11-11":"Bhatri Dwitiya","2026-11-15":"Chhath Puja",
+    "2026-11-24":"Guru Nanak's Birthday & Lachit Divas",
+    "2026-12-02":"Asom Divas (Su-Ka-Pha Divas)","2026-12-25":"Christmas Day"
+  };
+  const box=document.getElementById('todayStatus');
+  const label=document.getElementById('statusText');
+  const now=new Date();
+  const key=now.getFullYear()+'-'+String(now.getMonth()+1).padStart(2,'0')+'-'+String(now.getDate()).padStart(2,'0');
+  const day=now.getDay();
+  const holiday=now.getFullYear()===2026 ? holidays2026[key] : null;
+  if(day===0){label.textContent='Closed Today · Sunday';box.classList.add('closed');}
+  else if(holiday){label.textContent='Closed Today · '+holiday;box.classList.add('closed');}
+  else if(now.getFullYear()===2026){label.textContent='Open Today';}
+  else {label.textContent='Check local holiday notice';box.classList.add('closed');box.title='Holiday list is configured for 2026 only.';}
+})();
+</script>
+</body>
+</html>

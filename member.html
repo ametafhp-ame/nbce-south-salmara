@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#102b45">
+<title>Member Portal | NBCE South Salmara</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+:root{--navy:#102b45;--blue:#1e579f;--bg:#f4f7fb;--ink:#172b42;--muted:#687b91;--line:#d5e0ed}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,Segoe UI,Arial,sans-serif}
+.login-wrap{min-height:100vh;display:grid;place-items:center;padding:24px;background:radial-gradient(circle at 85% 15%,#dceafe 0,transparent 35%),var(--bg)}
+.login-card{width:min(100%,480px);background:#fff;border:1.5px solid var(--line);border-radius:20px;padding:36px;box-shadow:0 18px 50px #173e6014}
+.logo-wrap{display:flex;justify-content:center;margin-bottom:18px}.logo-wrap img{width:68px;height:68px;object-fit:contain;border-radius:50%}
+.login-card h1{text-align:center;margin:0;color:#123866;font-size:27px;letter-spacing:-.5px}.subtitle{text-align:center;color:var(--muted);font-size:13px;margin:10px 0 28px}
+.field{margin-bottom:18px}.field label{display:block;font-weight:700;font-size:13px;margin-bottom:9px}.field input{width:100%;padding:14px;border:1.5px solid #cbd9e9;border-radius:11px;font:inherit;outline:none}.field input:focus{border-color:#7ea6f5;box-shadow:0 0 0 3px #2563eb12}
+.primary{width:100%;border:0;border-radius:11px;background:#122f60;color:#fff;font-weight:800;padding:14px;cursor:pointer}.primary:hover{background:#1e579f}.error{display:none;color:#a71930;background:#fff0f1;border:1px solid #ffc8ce;border-radius:9px;padding:12px;margin-top:15px;font-size:13px;line-height:1.5}
+.tiny-note{text-align:center;color:#7a8ba0;font-size:11px;line-height:1.6;margin:18px 0 0}
+#dashboard{display:none}.appbar{background:var(--navy);color:white;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:15px}.appbrand{display:flex;align-items:center;gap:12px}.appbrand img{width:44px;height:44px;object-fit:contain;background:white;border-radius:50%}.appbrand strong{display:block;font-size:15px}.appbrand small{font-size:10px;color:#b9cde0;letter-spacing:1px}.logout{border:1px solid #5c7891;background:#244866;color:#fff;border-radius:9px;padding:10px 14px;font-weight:700;cursor:pointer}
+.dash{max-width:1450px;margin:auto;padding:26px}.dash-head{display:flex;justify-content:space-between;align-items:flex-start;gap:18px;margin-bottom:20px}.dash-head h1{margin:0 0 7px;font-size:27px;color:#153b61}.dash-head p{margin:0;color:var(--muted);font-size:13px}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;margin-bottom:22px}.stat{background:white;border:1.5px solid var(--line);border-radius:13px;padding:17px}.stat small{color:var(--muted);font-size:12px}.stat strong{display:block;font-size:25px;margin-top:8px;color:#153b61}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}.toolbar input,.toolbar select{border:1.5px solid #cbd9e9;border-radius:9px;padding:11px 12px;font:inherit;background:white}.toolbar input{flex:1;min-width:200px}.tabs{display:flex;gap:8px;overflow:auto;margin-bottom:16px}.tab{border:1px solid #cbd9e9;background:white;border-radius:20px;padding:10px 14px;color:#516780;font-size:12px;font-weight:700;white-space:nowrap;cursor:pointer}.tab.active{background:#eaf1ff;border-color:#7ea6f5;color:#174fcb}
+.table-wrap{overflow:auto;background:#fff;border:1.5px solid var(--line);border-radius:14px}.requests{width:100%;border-collapse:collapse;min-width:900px}.requests th,.requests td{padding:13px 14px;border-bottom:1px solid #e7edf5;text-align:left;vertical-align:middle;font-size:12px}.requests th{background:#f7faff;color:#61758c;font-size:11px;text-transform:uppercase;letter-spacing:.6px}.requests tr:last-child td{border-bottom:0}.service-tag{display:inline-block;background:#eaf1ff;color:#214e9b;border-radius:6px;padding:5px 7px;font-size:11px;font-weight:700}.status{display:inline-block;border-radius:20px;padding:5px 9px;font-size:11px;font-weight:800;background:#fff0cf;color:#8b5b00}.status.reviewed{background:#dff7eb;color:#116744}.status.replied{background:#e4efff;color:#1c4d9b}.status.ongoing{background:#eee7ff;color:#5b35a5}.status.rejected{background:#ffe4e6;color:#a11b2d}.status.complete{background:#d9fbe8;color:#087443}.action-btn{border:1px solid #bfd0e5;background:#fff;color:#214e75;border-radius:7px;padding:7px 9px;font-size:11px;font-weight:700;cursor:pointer;margin:2px}.action-btn:hover{background:#eff6ff}.empty{padding:38px;text-align:center;color:var(--muted);font-size:13px}.loading{padding:30px 22px;color:var(--muted);font-size:13px;line-height:1.65}.loading::before{content:"";display:inline-block}.notice{background:#fff8e9;border:1px solid #f0d9a5;border-radius:10px;padding:12px 14px;color:#6c5425;font-size:12px;line-height:1.6;margin-bottom:17px}
+.modal{display:none;position:fixed;inset:0;background:#08192bc7;z-index:10;align-items:center;justify-content:center;padding:18px}.modal.show{display:flex}.modal-card{width:min(100%,700px);max-height:90vh;overflow:auto;background:white;border-radius:16px;padding:22px}.modal-head{display:flex;justify-content:space-between;align-items:center;gap:10px}.modal-head h2{font-size:20px;margin:0;color:#153b61}.close{border:0;background:#edf2f8;border-radius:8px;padding:8px 12px;cursor:pointer}.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin:20px 0}.detail{background:#f7faff;border:1px solid var(--line);padding:12px;border-radius:9px}.detail small{display:block;color:var(--muted);font-size:10px;margin-bottom:6px}.detail strong{font-size:13px;overflow-wrap:anywhere}.receipt-preview{display:block;max-width:100%;max-height:380px;margin:12px auto;border:1px solid var(--line);border-radius:10px}.modal-actions{display:flex;gap:9px;flex-wrap:wrap}.green-btn{background:#0a7b58;color:white;border:0;border-radius:9px;padding:11px 14px;font-weight:800;cursor:pointer}.gray-btn{background:#edf2f8;color:#24415e;border:1px solid #d5e0ed;border-radius:9px;padding:11px 14px;font-weight:800;cursor:pointer}
+@media(max-width:800px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.dash{padding:16px}.appbar{padding:12px 16px}.dash-head{flex-direction:column}.detail-grid{grid-template-columns:1fr}}
+@media(max-width:480px){.login-card{padding:25px 20px}.login-card h1{font-size:24px}.stats{gap:8px}.stat{padding:12px}.stat strong{font-size:21px}.stat small{font-size:11px}}
+
+.site-header{height:76px;background:#fff;border-bottom:1px solid #d7e2ef;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:10px clamp(16px,3vw,36px);position:relative;z-index:2}
+.site-brand{display:flex;align-items:center;gap:12px;min-width:0;text-decoration:none;color:#102b45}
+.site-brand img{width:48px;height:48px;object-fit:contain;border-radius:50%;flex-shrink:0}
+.site-brand strong{display:block;font-size:clamp(16px,2vw,21px);font-weight:800;line-height:1.2;letter-spacing:-.3px}
+.site-brand small{display:block;color:#70839a;font-size:10px;letter-spacing:1.5px;margin-top:4px;font-weight:700}
+.home-link{display:inline-flex;align-items:center;gap:7px;color:#153b61;font-weight:800;font-size:13px;text-decoration:none;white-space:nowrap;padding:10px 13px;border:1px solid transparent;border-radius:9px}
+.home-link:hover{background:#eff5ff;border-color:#d5e3f6}
+.top-signout{font:inherit;font-size:13px;font-weight:800;white-space:nowrap;cursor:pointer;background:#f0f5fb;color:#173e60;border:1px solid #d5e0ed;border-radius:9px;padding:10px 14px}
+.top-signout:hover{background:#e4edf8}
+.login-wrap{min-height:calc(100vh - 76px)}
+.login-card .logo-wrap{display:none}
+#dashboard .appbar{background:#fff;color:#102b45;border-bottom:1px solid #d7e2ef;padding:8px clamp(16px,3vw,36px);justify-content:flex-end}
+#dashboard .appbrand img{background:#fff;border:1px solid #e0e8f1}
+#dashboard .appbrand small{color:#70839a}
+#dashboard .logout{background:#f0f5fb;color:#173e60;border:1px solid #d5e0ed}
+@media(max-width:520px){.site-header{height:68px;padding:8px 12px}.site-brand img{width:40px;height:40px}.site-brand small{font-size:8px;letter-spacing:1px}.home-link{font-size:12px;padding:8px 9px}.login-wrap{min-height:calc(100vh - 68px)}}
+
+
+/* Clean dashboard layout refinements */
+html{scroll-behavior:smooth}
+body{line-height:1.45}
+.site-header{min-height:72px;height:auto;padding:10px clamp(16px,2.8vw,34px)}
+.site-brand img{width:46px;height:46px}
+.site-brand strong{font-size:clamp(16px,1.6vw,20px)}
+#dashboard .appbar{min-height:58px;padding:8px clamp(16px,2.8vw,34px);justify-content:flex-end}
+#dashboard .appbrand img{width:40px;height:40px}
+#dashboard .appbrand strong{font-size:14px}
+#dashboard .appbrand small{font-size:9px}
+.dash{max-width:1320px;padding:28px clamp(16px,2.4vw,30px) 36px}
+.dash-head{margin-bottom:18px}
+.dash-head h1{font-size:clamp(23px,2.2vw,29px);letter-spacing:-.6px}
+.dash-head p{font-size:13px;line-height:1.6}
+.notice{margin-bottom:20px;padding:13px 16px;font-size:12px}
+.stats{gap:14px;margin-bottom:22px}
+.stat{padding:18px 19px;min-height:96px;display:flex;flex-direction:column;justify-content:center}
+.stat small{font-size:12px;letter-spacing:.1px}
+.stat strong{font-size:27px;margin-top:5px;line-height:1.2}
+.toolbar{display:grid;grid-template-columns:minmax(240px,1fr) minmax(150px,190px) minmax(130px,160px) auto;gap:10px;margin-bottom:16px}
+.toolbar input,.toolbar select{width:100%;min-width:0;min-height:44px;font-size:13px;padding:10px 12px}
+.toolbar .action-btn{min-height:44px;padding:10px 14px;font-size:12px;white-space:nowrap}
+.tabs{gap:8px;margin-bottom:16px;padding-bottom:2px}
+.tab{padding:10px 15px;font-size:12px;transition:background .15s,border-color .15s}
+.table-wrap{box-shadow:0 5px 18px #173e6008}
+.requests{min-width:820px}
+.requests th,.requests td{padding:14px 15px;font-size:12px}
+.requests th{font-size:10px;letter-spacing:.8px}
+.requests td{line-height:1.5}
+.loading,.empty{padding:34px 22px;line-height:1.6}
+.status{text-transform:capitalize}
+.action-btn{transition:background .15s}
+.modal-card{padding:25px}
+@media(max-width:950px){
+ .toolbar{grid-template-columns:minmax(0,1fr) minmax(150px,1fr); }
+ .toolbar input{grid-column:1/-1}
+ .toolbar .action-btn{width:max-content}
+}
+@media(max-width:640px){
+ .site-header{padding:9px 12px;gap:8px}
+ .site-brand{gap:9px}
+ .site-brand img{width:39px;height:39px}
+ .site-brand strong{font-size:15px}
+ .site-brand small{font-size:8px;letter-spacing:.7px}
+ .home-link{font-size:11px;padding:8px 7px}
+ #dashboard .appbar{padding:10px 14px}
+ .dash{padding:20px 13px 28px}
+ .dash-head h1{font-size:23px}
+ .notice{font-size:11px;padding:12px}
+ .stats{gap:9px;margin-bottom:18px}
+ .stat{min-height:84px;padding:13px}
+ .stat small{font-size:11px}
+ .stat strong{font-size:23px}
+ .toolbar{display:flex;flex-direction:column;gap:9px}
+ .toolbar input,.toolbar select,.toolbar .action-btn{width:100%;min-height:44px}
+ .toolbar .action-btn{white-space:normal}
+ .tabs{margin-right:-13px;padding-right:13px}
+ .tab{padding:9px 12px}
+ .requests{min-width:760px}
+ .modal-card{padding:17px}
+}
+
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <a class="site-brand" href="home.html" aria-label="NBCE South Salmara home">
+    <img src="logo.png" alt="NBCE South Salmara logo" onerror="this.style.display='none'">
+    <span><strong>NBCE South Salmara</strong><small>DIGITAL SERVICE CENTRE</small></span>
+  </a>
+  <button class="logout top-signout" id="topSignoutBtn" type="button">Sign out ↗</button>
+</header>
+
+<section class="login-wrap" id="loginView">
+  <div class="login-card">
+    <div class="logo-wrap"><img src="iibf-logo.png" alt="Centre logo" onerror="this.style.display='none'"></div>
+    <h1>Centre Team Login</h1>
+    <p class="subtitle">Secure access for authorised centre operators</p>
+    <form id="loginForm">
+      <div class="field"><label for="operatorId">Operator ID</label><input id="operatorId" type="text" autocomplete="username" placeholder="Enter your Operator ID" required></div>
+      <div class="field"><label for="password">Password</label><input id="password" type="password" autocomplete="current-password" placeholder="Enter your password" required></div>
+      <button class="primary" type="submit">Sign in to Dashboard</button>
+      <div class="error" id="loginError" role="alert"></div>
+    </form>
+    <p class="tiny-note">Authorised centre operators only. Sign-in is managed by Supabase Authentication.</p>
+  </div>
+</section>
+
+<section id="dashboard">
+<main class="dash">
+    <div class="dash-head"><div><h1>Member Dashboard</h1><p>Review service requests submitted by users and respond through WhatsApp.</p></div></div>
+    <div class="notice"><strong>Privacy:</strong> Only authorised signed-in operators should access user contact details and receipt photos. Do not share receipts or phone numbers outside the centre.</div>
+    <section class="stats">
+      <div class="stat"><small>Total Requests</small><strong id="totalCount">—</strong></div>
+      <div class="stat"><small>Pending</small><strong id="pendingCount">—</strong></div>
+      <div class="stat"><small>Ongoing</small><strong id="ongoingCount">—</strong></div>
+      <div class="stat"><small>Complete</small><strong id="completeCount">—</strong></div>
+    </section>
+    <div class="toolbar">
+      <input id="searchInput" type="search" placeholder="Search phone, request ID or filename…">
+      <select id="serviceFilter"><option value="all">All Services</option><option value="Aadhaar">Aadhaar</option><option value="PAN Card">PAN Card</option><option value="Bank Services">Bank Services</option><option value="Income Certificate">Income Certificate</option><option value="IIBF Services">IIBF Services</option><option value="Udyam Certificate">Udyam Certificate</option><option value="Driving Licence">Driving Licence</option><option value="Voter ID">Voter ID</option><option value="Other">Other Services</option></select>
+      <select id="statusFilter"><option value="all">All Statuses</option><option value="pending">Pending</option><option value="ongoing">Ongoing</option><option value="replied">Replied</option><option value="rejected">Rejected</option><option value="complete">Complete</option></select>
+      <button class="action-btn" id="refreshBtn">↻ Refresh</button>
+    </div>
+    <div class="tabs" id="serviceTabs">
+      <button class="tab active" data-service="all">All Requests</button>
+      <button class="tab" data-service="Aadhaar">Aadhaar</button>
+      <button class="tab" data-service="PAN Card">PAN Card</button>
+      <button class="tab" data-service="Bank Services">Bank Services</button>
+      <button class="tab" data-service="Income Certificate">Income Certificate</button>
+      <button class="tab" data-service="IIBF Services">IIBF Services</button>
+      <button class="tab" data-service="Udyam Certificate">Udyam Certificate</button>
+      <button class="tab" data-service="Driving Licence">Driving Licence</button>
+      <button class="tab" data-service="Voter ID">Voter ID</button>
+    </div>
+    <div class="table-wrap">
+      <div class="loading" id="loadingState">Sign in to load requests…</div>
+      <table class="requests" id="requestsTable" hidden>
+        <thead><tr><th>Submitted</th><th>Service</th><th>WhatsApp Number</th><th>Receipt</th><th>Status</th><th>Details</th></tr></thead>
+        <tbody id="requestsBody"></tbody>
+      </table>
+      <div class="empty" id="emptyState" hidden>No requests found for these filters.</div>
+    </div>
+  </main>
+</section>
+
+<div class="modal" id="detailModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+ <div class="modal-card">
+  <div class="modal-head"><h2 id="modalTitle">Request Details</h2><button class="close" id="closeModal">Close ✕</button></div>
+  <div id="detailContent"></div>
+ </div>
+</div>
+
+<script>
+// Early diagnostic guard: prevent a silent native form refresh if Supabase JS fails to load.
+(function(){
+  const form = document.getElementById('loginForm');
+  const errorBox = document.getElementById('loginError');
+  if (form) form.addEventListener('submit', function(e){
+    if (!window.supabase || typeof window.supabase.createClient !== 'function') {
+      e.preventDefault();
+      if (errorBox) {
+        errorBox.style.display = 'block';
+        errorBox.textContent = 'Supabase JavaScript library did not load. Check internet/CDN access, then refresh the page.';
+      }
+      console.error('Supabase JS library missing: https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2');
+    }
+  }, true);
+})();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+// Add your Supabase project URL and anon/publishable key from Project Settings → API.
+// These values are safe to use in browser code only when Row Level Security policies below are enabled.
+const SUPABASE_URL = "https://hizimlfplecwyqdjvaze.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_nV764Rar0ofHGPJAkukczA_vYA_ztNU";
+const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+const OPERATOR_ID_TO_EMAIL={'9707532882':'realakhirul@gmail.com','6003644722':'rashidulsscn@gmail.com'};
+let allRequests=[],activeTab='all',currentRequest=null,refreshTimer=null;
+const loginView=document.getElementById('loginView'),dashboard=document.getElementById('dashboard'),loginError=document.getElementById('loginError'),loadingState=document.getElementById('loadingState');
+function configured(){return !SUPABASE_URL.includes('PASTE_')&&!SUPABASE_ANON_KEY.includes('PASTE_')}
+document.getElementById('loginForm').addEventListener('submit',async e=>{e.preventDefault();loginError.style.display='block';loginError.style.color='#17406f';loginError.textContent='Signing in…';const submitBtn=e.currentTarget.querySelector('button[type=submit]');if(submitBtn){submitBtn.disabled=true;submitBtn.textContent='Signing in…';}try{if(!window.supabase||typeof window.supabase.createClient!=='function')throw new Error('Supabase JavaScript library did not load. Check internet/CDN access.');if(!configured())throw new Error('Setup required: add your Supabase project URL and publishable key.');const id=document.getElementById('operatorId').value.trim(),email=OPERATOR_ID_TO_EMAIL[id],password=document.getElementById('password').value;if(!email)throw new Error('Invalid Operator ID.');const {data,error}=await supabaseClient.auth.signInWithPassword({email,password});if(error)throw error;if(!data.session)throw new Error('Sign-in returned no session. Check Supabase Auth settings.');loginError.style.display='none';}catch(err){loginError.style.display='block';loginError.style.color='#b42318';loginError.textContent='Login problem: '+(err&&err.message?err.message:String(err));console.error('NBCE login diagnostic:',err);}finally{if(submitBtn){submitBtn.disabled=false;submitBtn.textContent='Sign in to Dashboard';}}});
+supabaseClient.auth.onAuthStateChange((_event,session)=>{if(session){loginView.style.display='none';dashboard.style.display='block';setTimeout(()=>loadRequests(),0);}else{dashboard.style.display='none';loginView.style.display='grid';if(refreshTimer){clearInterval(refreshTimer);refreshTimer=null;}}});
+document.getElementById('topSignoutBtn').addEventListener('click',async()=>{await supabaseClient.auth.signOut();});
+document.getElementById('refreshBtn').addEventListener('click',loadRequests);document.getElementById('searchInput').addEventListener('input',renderRequests);document.getElementById('serviceFilter').addEventListener('change',renderRequests);document.getElementById('statusFilter').addEventListener('change',renderRequests);
+document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));b.classList.add('active');activeTab=b.dataset.service;document.getElementById('serviceFilter').value='all';renderRequests();}));
+async function loadRequests(){if(!configured())return;loadingState.hidden=false;loadingState.textContent='Loading requests from Supabase…';document.getElementById('requestsTable').hidden=true;document.getElementById('emptyState').hidden=true;try{
+  const [aadhaarResult,panResult] = await Promise.all([
+    supabaseClient.from('aadhaar_requests').select('*').order('created_at',{ascending:false}),
+    supabaseClient.from('pan_requests').select('*').order('created_at',{ascending:false})
+  ]);
+  const errors=[];
+  if(aadhaarResult.error)errors.push('Aadhaar: '+aadhaarResult.error.message);
+  if(panResult.error)errors.push('PAN: '+panResult.error.message);
+  allRequests=[
+    ...(aadhaarResult.data||[]).map(item=>({...item,_sourceTable:'aadhaar_requests',_rowKey:'aadhaar_requests:'+item.id})),
+    ...(panResult.data||[]).map(item=>({...item,_sourceTable:'pan_requests',_rowKey:'pan_requests:'+item.id}))
+  ].sort((a,b)=>new Date(b.created_at||0)-new Date(a.created_at||0));
+  for(const item of allRequests){
+    item.createdAt=item.created_at;item.receiptURL='';item.documentLinks=[];
+    const paths=[];
+    if(item.storage_path)paths.push({path:item.storage_path,name:item.receipt_file_name||item.storage_path.split('/').pop()});
+    try{const note=typeof item.additional_note==='string'?JSON.parse(item.additional_note):item.additional_note;
+      if(note&&Array.isArray(note.documentFiles)){for(const f of note.documentFiles){if(f.storage_path)paths.push({path:f.storage_path,name:f.name||f.file_name||f.storage_path.split('/').pop()});else if(f.path)paths.push({path:f.path,name:f.name||f.path.split('/').pop()});}}
+    }catch{}
+    if(Array.isArray(item.document_files)){for(const f of item.document_files){if(f&&f.storage_path)paths.push({path:f.storage_path,name:f.name||f.file_name||f.storage_path.split('/').pop()});}}
+    const seen=new Set();
+    for(const f of paths){if(seen.has(f.path))continue;seen.add(f.path);const {data:signed,error:sErr}=await supabaseClient.storage.from('customer-documents').createSignedUrl(f.path,3600);if(!sErr&&signed)item.documentLinks.push({name:f.name,url:signed.signedUrl});}
+    item.receiptURL=item.documentLinks[0]?.url||'';
+  }
+  loadingState.hidden=true;
+  if(errors.length)console.warn('Some request tables could not be loaded:',errors.join(' | '));
+  renderRequests();
+  if(errors.length&&!allRequests.length){loadingState.hidden=false;loadingState.textContent='Could not load requests: '+errors.join(' | ');}
+}catch(err){console.error(err);loadingState.hidden=false;loadingState.textContent='Could not load requests. Check Supabase Auth, SELECT policies on both request tables, and private bucket setup.';}}
+function dateLabel(v){if(!v)return '—';try{return new Date(v).toLocaleString();}catch{return '—';}}
+function escapeHtml(v){return String(v??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));}
+function matchesService(item,service){if(service==='all')return true;const v=(item.service||'').toLowerCase();if(service==='Other')return !['aadhaar check','download aadhaar','aadhaar','pan card','bank services','income certificate','iibf services','udyam certificate','driving licence','voter id'].some(x=>v.includes(x));if(service==='Aadhaar')return v.includes('aadhaar');return v.includes(service.toLowerCase());}
+function renderRequests(){const term=document.getElementById('searchInput').value.trim().toLowerCase(),service=document.getElementById('serviceFilter').value,status=document.getElementById('statusFilter').value;const normalizeStatus=v=>({reviewed:'ongoing',replied:'replied',completed:'complete',complete:'complete',rejected:'rejected',ongoing:'ongoing',pending:'pending'}[(v||'pending').toLowerCase()]||'pending');const list=allRequests.filter(i=>matchesService(i,activeTab)&&matchesService(i,service)&&(status==='all'||normalizeStatus(i.status)===status)&&[i.id,i.whatsapp_number,i.receipt_file_name,i.service].join(' ').toLowerCase().includes(term));document.getElementById('totalCount').textContent=allRequests.length;document.getElementById('pendingCount').textContent=allRequests.filter(x=>normalizeStatus(x.status)==='pending').length;document.getElementById('ongoingCount').textContent=allRequests.filter(x=>normalizeStatus(x.status)==='ongoing').length;document.getElementById('completeCount').textContent=allRequests.filter(x=>normalizeStatus(x.status)==='complete').length;const table=document.getElementById('requestsTable'),empty=document.getElementById('emptyState');table.hidden=list.length===0;empty.hidden=list.length!==0;document.getElementById('requestsBody').innerHTML=list.map(i=>{const st=normalizeStatus(i.status);return `<tr><td>${escapeHtml(dateLabel(i.createdAt))}</td><td><span class="service-tag">${escapeHtml(i.service||'Other Service')}</span></td><td>${escapeHtml(i.whatsapp_number||'—')}</td><td>${i.receiptURL?`<a class="action-btn" href="${escapeHtml(i.receiptURL)}" target="_blank" rel="noopener">View photo ↗</a>`:'—'}</td><td><span class="status ${st}">${st}</span></td><td><button class="action-btn" data-view="${escapeHtml(i._rowKey||i.id)}">Details</button></td></tr>`}).join('');document.querySelectorAll('[data-view]').forEach(b=>b.addEventListener('click',()=>showDetails(b.dataset.view)));}
+function showDetails(id){const i=allRequests.find(x=>String(x._rowKey||x.id)===String(id));if(!i)return;currentRequest=i;document.getElementById('modalTitle').textContent=i.service||'Request Details';document.getElementById('detailContent').innerHTML=`<div class="detail-grid"><div class="detail"><small>Request ID</small><strong>${escapeHtml(i.id)}</strong></div><div class="detail"><small>Submitted</small><strong>${escapeHtml(dateLabel(i.createdAt))}</strong></div><div class="detail"><small>WhatsApp Number</small><strong>${escapeHtml(i.whatsapp_number||'—')}</strong></div><div class="detail"><small>Service</small><strong>${escapeHtml(i.service||'—')}</strong></div><div class="detail"><small>Receipt filename</small><strong>${escapeHtml(i.receipt_file_name||'—')}</strong></div><div class="detail"><small>Status</small><strong>${escapeHtml(({reviewed:'ongoing',replied:'replied',completed:'complete',complete:'complete',rejected:'rejected',ongoing:'ongoing',pending:'pending'}[(i.status||'pending').toLowerCase()]||'pending'))}</strong></div><div class="detail"><small>Additional note</small><strong>${escapeHtml(i.additional_note||'—')}</strong></div></div>${i.receiptURL?`<img class="receipt-preview" src="${escapeHtml(i.receiptURL)}" alt="Uploaded receipt photo">`:'<p>No receipt photo available.</p>'}${i.documentLinks&&i.documentLinks.length?`<div class="detail"><strong>Uploaded Documents</strong><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">${i.documentLinks.map((f,n)=>`<a class="action-btn" href="${escapeHtml(f.url)}" download="${escapeHtml(f.name)}" target="_blank" rel="noopener">Download ${n+1}: ${escapeHtml(f.name)}</a>`).join('')}<button class="action-btn" type="button" onclick="downloadAllForRequest('${escapeHtml(i._rowKey||i.id)}')">Download All Photos</button></div></div>`:'<p>No uploaded document found.</p>'}<div class="modal-actions"><a class="green-btn" href="${i.whatsapp_number?'https://wa.me/'+encodeURIComponent(i.whatsapp_number.replace(/[^0-9]/g,''))+'?text='+encodeURIComponent('Hello, regarding your '+(i.service||'service')+' request at NBCE South Salmara (Reference: '+i.id+').'):'#'}" target="_blank" rel="noopener">Reply on WhatsApp ↗</a><button class="gray-btn" id="markOngoing">Mark Ongoing</button><button class="gray-btn" id="markReplied">Mark Replied</button><button class="gray-btn" id="markRejected">Mark Rejected</button><button class="green-btn" id="markComplete">Mark Complete</button></div>`;document.getElementById('detailModal').classList.add('show');document.getElementById('markOngoing').addEventListener('click',()=>setStatus(i._rowKey||i.id,'ongoing'));document.getElementById('markReplied').addEventListener('click',()=>setStatus(i._rowKey||i.id,'replied'));document.getElementById('markRejected').addEventListener('click',()=>setStatus(i._rowKey||i.id,'rejected'));document.getElementById('markComplete').addEventListener('click',()=>setStatus(i._rowKey||i.id,'complete'));}
+function downloadAllForRequest(id){const item=allRequests.find(x=>String(x._rowKey||x.id)===String(id));if(!item||!item.documentLinks||!item.documentLinks.length){alert('No uploaded files found for this request.');return;}item.documentLinks.forEach((f,index)=>setTimeout(()=>{const a=document.createElement('a');a.href=f.url;a.download=f.name||('document-'+(index+1));a.target='_blank';a.rel='noopener';document.body.appendChild(a);a.click();a.remove();},index*350));}
+async function setStatus(key,status){try{const parts=String(key).split(':');const table=parts.length>1?parts[0]:'aadhaar_requests';const id=parts.length>1?parts.slice(1).join(':'):key;if(!['aadhaar_requests','pan_requests'].includes(table))throw new Error('Unknown request table.');const {error}=await supabaseClient.from(table).update({status,updated_at:new Date().toISOString()}).eq('id',id);if(error)throw error;await loadRequests();document.getElementById('detailModal').classList.remove('show');}catch(err){alert('Could not update status. Check the authenticated operator UPDATE policy for this table. '+(err?.message||''));console.error(err);}}
+document.getElementById('closeModal').addEventListener('click',()=>document.getElementById('detailModal').classList.remove('show'));document.getElementById('detailModal').addEventListener('click',e=>{if(e.target.id==='detailModal')e.currentTarget.classList.remove('show');});
+</script>
+</body>
+</html>

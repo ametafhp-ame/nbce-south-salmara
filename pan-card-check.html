@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#102b45"><title>PAN Card Check | NBCE South Salmara</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+:root{--navy:#102b45;--blue:#2563eb;--bg:#f5f7fb;--ink:#172b42;--muted:#687b91;--line:#dbe3ed;--green:#087f5b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px Inter,Segoe UI,Arial,sans-serif}a{text-decoration:none;color:inherit}
+header{background:#fff;border-bottom:1px solid var(--line)}.header-inner{max-width:900px;margin:auto;padding:14px 22px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.brand{display:flex;align-items:center;gap:12px;min-width:0}.brand img{width:58px;height:58px;object-fit:contain}.brand strong{display:block;color:var(--navy);font-size:18px}.brand small{display:block;color:var(--muted);font-size:11px;margin-top:4px;letter-spacing:.5px}
+.home-btn{display:inline-flex;align-items:center;justify-content:center;border-radius:9px;padding:10px 14px;font-size:13px;font-weight:700;background:#edf3fa;color:var(--navy);white-space:nowrap}
+main{max-width:760px;margin:auto;padding:28px 22px 42px}.eyebrow{color:var(--blue);font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px}h1{font-size:clamp(25px,4vw,34px);margin:0 0 8px;color:var(--navy);letter-spacing:-.7px}.intro{margin:0 0 22px;color:var(--muted);line-height:1.6}
+.form-card{background:#fff;border:1px solid var(--line);border-radius:17px;padding:clamp(18px,4vw,30px);box-shadow:0 8px 24px rgba(16,43,69,.06)}.field{margin-bottom:20px}label,.field-title{display:block;font-weight:700;color:var(--navy);margin-bottom:8px}.required{color:#dc2626}input[type=tel],select{width:100%;border:1px solid #cbd5e1;border-radius:10px;padding:13px 14px;font:inherit;color:var(--ink);background:#fff;outline:none}input:focus,select:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(37,99,235,.12)}.hint{font-size:12px;line-height:1.5;color:var(--muted);margin:7px 0 0}
+.upload-box{border:1.5px dashed #a8bfdc;background:#f8fbff;border-radius:12px;padding:16px}input[type=file]{width:100%;font:inherit;font-size:13px}.preview{display:none;margin-top:12px;max-width:180px;max-height:180px;object-fit:contain;border-radius:8px;border:1px solid var(--line);background:white}.file-name{font-size:12px;color:var(--muted);margin-top:8px;overflow-wrap:anywhere}
+.notice{background:#fff8e8;border:1px solid #f1d59b;color:#785313;padding:12px 14px;border-radius:10px;font-size:12px;line-height:1.55;margin:8px 0 20px}.submit{width:100%;border:0;border-radius:10px;background:var(--blue);color:white;padding:14px 18px;font:inherit;font-weight:800;cursor:pointer}.submit:hover{background:#1d4ed8}.backlink{display:block;text-align:center;margin-top:18px;color:var(--blue);font-size:13px;font-weight:700}.message{display:none;margin-top:14px;padding:12px;border-radius:10px;font-size:13px;line-height:1.5}.message.error{display:block;background:#fff1f2;color:#9f1239;border:1px solid #fecdd3}.message.info{display:block;background:#eff6ff;color:#1e40af;border:1px solid #bfdbfe}.phone-wrap{display:flex;align-items:stretch;border:1px solid #cbd5e1;border-radius:10px;background:#fff;overflow:hidden}.phone-prefix{display:flex;align-items:center;padding:0 14px;background:#edf3fa;border-right:1px solid #cbd5e1;color:var(--navy);font-weight:800;white-space:nowrap}.phone-wrap input{border:0!important;box-shadow:none!important;border-radius:0!important;min-width:0;flex:1}.upload-progress{display:none;margin-top:16px;padding:14px;border:1px solid #d5e0ed;border-radius:11px;background:#f7faff}.progress-head{display:flex;justify-content:space-between;gap:12px;font-size:13px;font-weight:800;color:var(--navy);margin-bottom:8px}.progress-track{height:10px;background:#dbe5f1;border-radius:99px;overflow:hidden}.progress-fill{height:100%;width:0;background:#087f5b;border-radius:99px;transition:width .15s linear}.progress-foot{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:10px;font-size:12px;color:var(--muted)}.cancel-upload{border:1px solid #fca5a5;background:#fff;color:#b91c1c;border-radius:8px;padding:8px 11px;font:inherit;font-weight:700;cursor:pointer}.cancel-upload:disabled{opacity:.55;cursor:not-allowed}footer{text-align:center;padding:0 16px 24px;color:#8491a0;font-size:12px}
+@media(max-width:560px){.header-inner{padding:12px 14px;gap:8px}.brand img{width:46px;height:46px}.brand strong{font-size:14px}.brand small{font-size:9px}.home-btn{font-size:12px;padding:9px}main{padding:22px 14px 32px}}
+</style></head><body>
+<header><div class="header-inner"><a class="brand" href="home.html"><img src="logo.png" alt="NBCE South Salmara logo"><span><strong>NBCE South Salmara</strong><small>DIGITAL SERVICE CENTRE</small></span></a><a class="home-btn" href="pan-card-services.html">← PAN Services</a></div></header>
+<main><h1>PAN Card Check</h1>
+<form class="form-card" id="requestForm" novalidate>
+<div class="field"><label for="whatsapp">WhatsApp Number <span class="required">*</span></label><div class="phone-wrap"><span class="phone-prefix">+91</span><input id="whatsapp" name="whatsapp" type="tel" inputmode="numeric" autocomplete="tel-national" maxlength="10" pattern="[6-9][0-9]{9}" placeholder="Enter 10-digit number" required></div><p class="hint">+91 is fixed. Enter only your 10-digit mobile number.</p></div><div class="field"><label for="ackReceipt">PAN Acknowledgement Receipt Photo <span class="required">*</span></label><div class="upload-box"><input id="ackReceipt" name="ackReceipt" type="file" accept="image/*" required><img class="preview" id="ackReceiptPreview" alt="Selected document preview"><div class="file-name" id="ackReceiptName"></div></div></div>
+
+<button class="submit" type="submit">Submit Request →</button><div id="uploadProgress" class="upload-progress" aria-live="polite"><div class="progress-head"><span id="progressTitle">Preparing upload…</span><span id="progressPercent">0%</span></div><div class="progress-track"><div id="progressFill" class="progress-fill"></div></div><div class="progress-foot"><span id="progressDetail">Please wait</span><button id="cancelUpload" class="cancel-upload" type="button">Cancel upload</button></div></div><div id="formMessage" class="message" role="status"></div>
+<a class="backlink" href="pan-card-services.html">← Back to PAN Card Services</a>
+</form></main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL = "https://hizimlfplecwyqdjvaze.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_nV764Rar0ofHGPJAkukczA_vYA_ztNU";
+const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+let activeUpload = null;
+let uploadCancelled = false;
+let hideProgressTimer = null;
+function setupPreview(inputId, previewId, nameId) {
+ const input=document.getElementById(inputId), preview=document.getElementById(previewId), name=document.getElementById(nameId);
+ input.addEventListener('change',()=>{const file=input.files&&input.files[0];if(!file){preview.style.display='none';preview.removeAttribute('src');name.textContent='';return;}if(!file.type.startsWith('image/')){alert('Please choose an image file.');input.value='';preview.style.display='none';name.textContent='';return;}name.textContent=file.name+' ('+(file.size/1024/1024).toFixed(2)+' MB)';preview.src=URL.createObjectURL(file);preview.style.display='block';});
+}
+setupPreview('ackReceipt','ackReceiptPreview','ackReceiptName');
+const form=document.getElementById('requestForm'), msg=document.getElementById('formMessage');
+const submitButton=form.querySelector('button[type="submit"]');
+const progressBox=document.getElementById('uploadProgress'), progressTitle=document.getElementById('progressTitle'), progressPercent=document.getElementById('progressPercent'), progressFill=document.getElementById('progressFill'), progressDetail=document.getElementById('progressDetail'), cancelButton=document.getElementById('cancelUpload');
+function setProgress(percent,title,detail){const n=Math.max(0,Math.min(100,Math.round(percent)));progressPercent.textContent=n+'%';progressFill.style.width=n+'%';if(title)progressTitle.textContent=title;if(detail)progressDetail.textContent=detail;}
+function showMessage(kind,text){msg.style.display='block';msg.className='message '+kind;msg.textContent=text;}
+function uploadFileWithProgress(file,path){return new Promise((resolve,reject)=>{const xhr=new XMLHttpRequest();activeUpload=xhr;xhr.open('POST',SUPABASE_URL+'/storage/v1/object/customer-documents/'+path);xhr.setRequestHeader('apikey',SUPABASE_ANON_KEY);xhr.setRequestHeader('Authorization','Bearer '+SUPABASE_ANON_KEY);xhr.setRequestHeader('Content-Type',file.type);xhr.setRequestHeader('x-upsert','false');xhr.upload.onprogress=e=>{if(e.lengthComputable)setProgress((e.loaded/e.total)*100,'Uploading receipt…',Math.round(e.loaded/1024)+' KB uploaded');};xhr.onload=()=>{activeUpload=null;if(xhr.status>=200&&xhr.status<300){setProgress(100,'Upload complete','Receipt uploaded');resolve();}else{let message='Upload failed ('+xhr.status+')';try{message=JSON.parse(xhr.responseText).message||JSON.parse(xhr.responseText).error||message}catch{}reject(new Error(message));}};xhr.onerror=()=>{activeUpload=null;reject(new Error('Network error while uploading receipt.'));};xhr.onabort=()=>{activeUpload=null;reject(new Error('UPLOAD_CANCELLED'));};xhr.send(file);});}
+cancelButton.addEventListener('click',()=>{if(activeUpload){uploadCancelled=true;activeUpload.abort();}else if(submitButton.disabled){uploadCancelled=true;}});
+form.addEventListener('submit',async e=>{
+ e.preventDefault();if(!form.reportValidity())return;
+ const rawPhone=document.getElementById('whatsapp').value.trim(),file=document.getElementById('ackReceipt').files[0];
+ if(!/^[6-9]\d{9}$/.test(rawPhone)){showMessage('error','Enter a valid 10-digit Indian WhatsApp number.');return;}
+ if(!file||!file.type.startsWith('image/')){showMessage('error','Please select a valid PAN acknowledgement receipt image.');return;}
+ if(file.size>8*1024*1024){showMessage('error','Please upload an image smaller than 8 MB.');return;}
+ if(hideProgressTimer)clearTimeout(hideProgressTimer);uploadCancelled=false;submitButton.disabled=true;submitButton.textContent='Uploading…';cancelButton.disabled=false;progressBox.style.display='block';msg.style.display='none';msg.textContent='';setProgress(0,'Preparing upload…','Please wait');
+ const safeName=file.name.replace(/[^a-zA-Z0-9._-]/g,'_').replace(/\.[^.]+$/,'');const path='panCardCheck/'+Date.now()+'_'+crypto.randomUUID()+'_'+safeName+'.'+(file.type==='image/png'?'png':file.type==='image/webp'?'webp':'jpg');
+ try{
+  setProgress(0,'Uploading receipt…','Starting upload');await uploadFileWithProgress(file,path);
+  if(uploadCancelled)throw new Error('UPLOAD_CANCELLED');
+  cancelButton.disabled=true;setProgress(100,'Saving request…','Saving request details');
+  const {error}=await supabaseClient.from('pan_requests').insert({service:'PAN Card Check',whatsapp_number:'+91'+rawPhone,receipt_file_name:file.name,storage_path:path,status:'pending'});
+  if(error){await supabaseClient.storage.from('customer-documents').remove([path]);throw error;}
+  setProgress(100,'Upload complete','Request submitted successfully.');showMessage('info','PAN Card Check request submitted successfully. The centre can review it in the Member Portal.');form.reset();document.getElementById('ackReceiptPreview').style.display='none';document.getElementById('ackReceiptPreview').removeAttribute('src');document.getElementById('ackReceiptName').textContent='';cancelButton.textContent='Upload finished';
+  hideProgressTimer=setTimeout(()=>{progressBox.style.display='none';cancelButton.textContent='Cancel upload';},2000);
+ }catch(err){if(err.message==='UPLOAD_CANCELLED'){progressBox.style.display='none';showMessage('error','Upload cancelled. You can correct the number or choose another photo and try again.');}else{console.error(err);showMessage('error','Could not submit PAN Card Check request. Check the panCardCheck Storage upload policy and pan_requests INSERT policy. Details: '+(err.message||'Unknown error'));}}
+ finally{activeUpload=null;submitButton.disabled=false;submitButton.textContent='Submit Request →';cancelButton.disabled=false;}
+});
+</script></body></html>

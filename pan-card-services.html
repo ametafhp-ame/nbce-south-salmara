@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#102b45">
+<title>PAN Card Services | NBCE South Salmara</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+:root{--navy:#102b45;--blue:#2563eb;--bg:#f5f7fb;--ink:#172b42;--muted:#687b91;--line:#dbe3ed;--green:#087f5b}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px Inter,Segoe UI,Arial,sans-serif}
+a{text-decoration:none;color:inherit}
+header{background:#fff;border-bottom:1px solid var(--line)}
+.header-inner{max-width:1080px;margin:auto;padding:16px 22px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.brand{display:flex;align-items:center;gap:14px;min-width:0}
+.brand img{width:62px;height:62px;object-fit:contain}
+.brand strong{display:block;color:var(--navy);font-size:18px}
+.brand small{display:block;color:var(--muted);font-size:12px;margin-top:4px;letter-spacing:.6px}
+.home-btn,.directions{display:inline-flex;align-items:center;justify-content:center;border-radius:9px;padding:10px 14px;font-size:13px;font-weight:700}
+.home-btn{background:#edf3fa;color:var(--navy)}
+main{max-width:1080px;margin:auto;padding:26px 22px 32px}
+h1{font-size:clamp(24px,4vw,32px);margin:0 0 8px;color:var(--navy);letter-spacing:-.7px}
+.lead{margin:0;color:var(--muted);line-height:1.6}
+.status-row{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:22px 0;background:linear-gradient(110deg,#eaf3ff,#f0fbf6);border:1.5px solid #b8d2f2;border-left:5px solid #2563eb;border-radius:12px;padding:18px 20px;box-shadow:0 4px 12px rgba(37,99,235,.07)}
+.status-row strong{display:block;color:var(--navy);margin-bottom:6px;font-size:16px}.status-info small{display:block;color:#405a75;font-size:13px;font-weight:600}
+.status-row small{color:var(--muted)}
+.status{display:inline-flex;align-items:center;gap:8px;background:#d4f8e3;color:#075b35;border:1px solid #8cdbad;padding:11px 14px;border-radius:9px;font-size:14px;font-weight:800;box-shadow:0 2px 5px rgba(8,127,91,.08)}
+.status.closed{background:#ffe3e5;color:#a71930;border-color:#f1aab2;box-shadow:0 2px 5px rgba(167,25,48,.07)}
+.status-dot{width:8px;height:8px;border-radius:50%;background:#16a05d}
+.status.closed .status-dot{background:#dc2626}
+.section-title{font-size:20px;margin:26px 0 14px;color:var(--navy)}
+.services{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.service{display:flex;align-items:center;gap:16px;background:#fff;border:2px solid #c7d8ec;border-radius:15px;padding:22px;min-height:142px;transition:transform .15s,border-color .15s,box-shadow .15s;box-shadow:0 4px 12px rgba(16,43,69,.06)}
+.service:hover{border-color:#2563eb;box-shadow:0 8px 20px rgba(16,43,69,.10);transform:translateY(-2px)}
+.service-icon{width:60px;height:60px;flex:0 0 60px;display:grid;place-items:center;background:#e5efff;border-radius:13px;font-size:29px}
+.service h3{font-size:19px;margin:0 0 7px;color:var(--navy)}
+.service p{font-size:14px;line-height:1.55;margin:0;color:#53677d}
+.arrow{margin-left:auto;color:var(--blue);font-size:28px;font-weight:700;flex-shrink:0}
+.location{margin-top:24px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px}
+.location h2{font-size:18px;margin:0 0 10px;color:var(--navy)}
+.address{line-height:1.65;margin:0 0 14px;color:#43566b}
+.directions{background:var(--navy);color:#fff}
+footer{max-width:1080px;margin:0 auto;padding:0 22px 22px;color:#8491a0;font-size:12px}
+@media(max-width:620px){.header-inner{padding:12px 14px;align-items:center}.brand img{width:50px;height:50px}.brand strong{font-size:15px}.brand small{font-size:10px}.home-btn{font-size:12px;padding:9px}.header-inner{gap:8px}main{padding:20px 14px 26px}.status-row{align-items:flex-start;flex-direction:column}.services{grid-template-columns:1fr}.service{padding:18px;min-height:126px}.service-icon{width:54px;height:54px;flex-basis:54px;font-size:26px}.service h3{font-size:18px}.location{padding:17px}footer{padding:0 14px 20px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <a class="brand" href="home.html">
+      <img src="logo.png" alt="NBCE South Salmara logo">
+      <span><strong>NBCE South Salmara</strong><small>DIGITAL SERVICE CENTRE</small></span>
+    </a>
+    <a class="home-btn" href="home.html">← Home</a>
+  </div>
+</header>
+<main>
+  <h1>PAN Card Services</h1>
+
+  <section class="status-row" aria-label="Online service availability">
+    <div class="status-info"><strong>Online Service</strong><small>Available 24 hours a day, 7 days a week</small></div>
+    <div class="status"><span class="status-dot"></span><span>Available 24/7</span></div>
+  </section>
+
+  <section>
+    <h2 class="section-title">Choose a Service</h2>
+    <div class="services">
+      <a class="service" href="new-pan-card-apply.html">
+        <div class="service-icon" aria-hidden="true">🪪</div>
+        <div><h3>New PAN Card Apply</h3><p>Apply for a new PAN card.</p><span style="display:inline-block;margin-top:9px;color:#1d4ed8;font-size:12px;font-weight:800">OPEN SERVICE →</span></div>
+        <span class="arrow" aria-hidden="true">›</span>
+      </a>
+      <a class="service" href="pan-card-check.html">
+        <div class="service-icon" aria-hidden="true">🔍</div>
+        <div><h3>PAN Card Check</h3><p>Check your PAN card application or request status.</p><span style="display:inline-block;margin-top:9px;color:#1d4ed8;font-size:12px;font-weight:800">OPEN SERVICE →</span></div>
+        <span class="arrow" aria-hidden="true">›</span>
+      </a>
+    </div>
+  </section>
+
+
+</main>
+
+</body>
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#102b45">
+  <title>NBCE South Salmara | Digital Services</title>
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap'); :root{--navy:#102b45;--navy2:#183d5d;--blue:#2563eb;--blue2:#1d55c7;--bg:#f4f7fb;--ink:#172b42;--muted:#687b91;--line:#e2eaf4;--white:#fff;--teal:#0a9b8d} *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:90px}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,Segoe UI,Arial,sans-serif;font-size:16px}a{color:inherit;text-decoration:none}button,input{font:inherit}.sidebar{position:fixed;inset:0 auto 0 0;width:250px;background:var(--navy);color:#fff;padding:24px 16px 18px;display:flex;flex-direction:column;z-index:10}.brand{display:flex;gap:11px;align-items:center;padding:2px 8px 28px}.brand-mark{height:42px;width:42px;background:white;color:var(--blue);border-radius:13px;display:grid;place-items:center;font-weight:900;font-size:22px}.brand-copy strong{display:block;font-size:16px;letter-spacing:-.3px}.brand-copy small{display:block;font-size:10px;color:#b9cde0;letter-spacing:1.1px;margin-top:5px}.side-nav{display:grid;gap:5px}.nav-link{display:flex;gap:13px;align-items:center;color:#e0eaf5;border-radius:10px;padding:15px 12px;font-size:15px;transition:.18s}.nav-link span{width:21px;text-align:center;font-size:17px}.nav-link:hover,.nav-link.active{background:#244866;color:white}.sidebar-help{margin-top:auto;background:#173954;border:1px solid #2b4e6b;border-radius:13px;padding:15px}.help-icon{width:30px;height:30px;background:#285578;border-radius:9px;display:grid;place-items:center;margin-bottom:12px;color:#a9f0e4}.sidebar-help strong{font-size:14px}.sidebar-help p{font-size:12px;line-height:1.65;color:#c0d0df;margin:7px 0 12px}.sidebar-help a{font-size:13px;color:#9ce8df;font-weight:700}.sidebar-help a span{margin-left:6px}.sidebar-foot{font-size:11px;color:#7793ae;margin:17px 5px 0}.main{margin-left:250px;min-height:100vh}.page-content{max-width:1500px;margin:auto;padding:30px 34px 26px}.welcome{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-bottom:25px}.eyebrow{font-size:12px;font-weight:800;color:#009a91;letter-spacing:1.8px}.quick-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px;margin:20px 0 31px}.stat-card{display:flex;align-items:center;gap:14px;background:white;border:1px solid var(--line);border-radius:14px;padding:17px 20px;min-width:0}.stat-icon{width:43px;height:43px;flex-shrink:0;border-radius:12px;display:grid;place-items:center;font-size:19px}.stat-icon.blue{background:#eaf1ff;color:#194d9e}.stat-icon.green{background:#e5f7f3;color:#087d72}.stat-icon.orange{background:#fff1df;color:#9c5b10}.stat-card small,.stat-card span{display:block;color:#75869b;font-size:12px}.stat-card strong{display:block;color:#122a44;font-size:23px;letter-spacing:-.5px;margin:4px 0}.stat-card span{font-size:12px}.services-section{scroll-margin-top:95px}.section-heading{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:16px}.section-heading h2{font-size:22px;margin:7px 0 5px;letter-spacing:-.5px}.section-heading p{font-size:12px;color:#71849a;margin:0}.search-box{display:flex;align-items:center;gap:10px;width:300px;background:white;border:1px solid #dce5f0;border-radius:10px;padding:0 13px;height:45px;color:#7e91a7}.search-box span{font-size:22px}.search-box input{width:100%;border:0;outline:0;background:transparent;font-size:15px;color:var(--ink)}.search-box:focus-within{border-color:#8db1f8;box-shadow:0 0 0 3px #2563eb0d}.filter-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}.filter{border:1px solid #d8e3ef;background:white;color:#516780;border-radius:22px;padding:12px 16px;font-size:14px;white-space:nowrap}.filter:hover,.filter.active{background:#eaf1ff;border-color:#b8ceff;color:#174fcb;font-weight:800}.service-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.service-card{background:white;border:1px solid var(--line);border-radius:15px;padding:18px;min-height:188px;display:flex;flex-direction:column;transition:transform .18s,box-shadow .18s,border-color .18s}.service-card:hover{transform:translateY(-3px);box-shadow:0 12px 25px #16385a0b;border-color:#bfd2f2}.card-top{display:flex;justify-content:space-between;align-items:center;gap:8px}.service-icon{width:43px;height:43px;border-radius:12px;background:#edf3ff;display:grid;place-items:center;font-size:21px}.popular-badge{background:#f0f3f8;color:#526980;border-radius:6px;padding:7px 9px;font-size:12px;white-space:nowrap}.popular-badge span{color:#e4a22b;margin-right:3px}.service-card h3{font-size:16px;line-height:1.4;margin:16px 0 0;color:#122943}.service-card p{font-size:14px;line-height:1.75;color:#71839a;margin:0 0 14px;flex:1}.service-link{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:800;color:#1458e5}.service-link:hover{color:#0b368f}.empty-state{padding:30px;text-align:center;color:var(--muted);background:white;border:1px solid var(--line);border-radius:12px;font-size:12px}.info-strip{margin-top:28px;padding:20px 22px;background:#eaf3fb;border:1px solid #dbe8f6;border-radius:14px;display:flex;align-items:center;gap:15px}.info-symbol{width:42px;height:42px;border-radius:12px;background:#d6e7ff;color:#2459a4;display:grid;place-items:center;font-size:19px;flex-shrink:0}.info-strip div:nth-child(2){flex:1}.info-strip strong{font-size:14px}.info-strip p{font-size:12px;color:#647b94;margin:5px 0 0}.contact-button{background:#173e60;color:white;border-radius:9px;padding:12px 15px;font-size:12px;font-weight:800;white-space:nowrap}.contact-button span{margin-left:8px}.footer{display:flex;justify-content:space-between;gap:15px;padding:23px 0 4px;color:#8190a2;font-size:12px}.footer strong{color:#465b71}@media(min-width:1500px){.page-content{padding-left:42px;padding-right:42px}.service-grid{gap:16px}.service-card{padding:20px;min-height:195px}}@media(max-width:1150px){.sidebar{width:220px}.main{margin-left:220px}.page-content{padding:25px 23px}.service-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.stat-card{padding:14px}.stat-card strong{font-size:18px}}@media(max-width:780px){.sidebar{transform:translateX(-100%);transition:transform .2s;box-shadow:12px 0 30px #0002}.sidebar.open{transform:translateX(0)}.main{margin-left:0}.page-content{padding:23px 16px}.quick-stats{gap:9px}.stat-card{padding:12px;gap:9px}.stat-icon{width:34px;height:34px;font-size:16px}.stat-card small{font-size:12px}.stat-card strong{font-size:19px}.stat-card span{font-size:10px}.section-heading{align-items:stretch;flex-direction:column}.search-box{width:100%}.service-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.service-card{padding:15px;min-height:190px}.filter-row{gap:6px}.filter{padding:9px 12px;font-size:12px}.info-strip{align-items:flex-start;flex-wrap:wrap}.info-strip div:nth-child(2){min-width:calc(100% - 65px)}.contact-button{margin-left:57px}.footer{flex-direction:column;line-height:1.6}}@media(max-width:430px){.quick-stats{grid-template-columns:1fr}.stat-card{padding:13px 16px}.stat-card strong{font-size:18px}.stat-card span{font-size:12px}.service-grid{grid-template-columns:1fr}.service-card{min-height:160px}.filter-row{overflow-x:auto;flex-wrap:nowrap;padding-bottom:5px}.filter{flex-shrink:0}.info-strip{padding:16px}.contact-button{margin-left:0}} .business-title{font-size:34px;letter-spacing:-1px;margin:0;font-weight:800;color:#153b61} .welcome{margin-bottom:25px;min-height:44px} .member-portal{margin-top:28px;padding:22px 24px;background:linear-gradient(110deg,#102b45,#1e579f);color:#fff;border-radius:15px;display:flex;align-items:center;gap:16px} .member-portal-icon{width:48px;height:48px;border-radius:13px;background:#ffffff20;border:1px solid #ffffff30;display:grid;place-items:center;font-size:25px;flex-shrink:0} .member-portal-copy{flex:1} .portal-kicker{font-size:9px;letter-spacing:1.6px;color:#a8e9e1;font-weight:800} .member-portal h2{font-size:21px;margin:5px 0} .member-portal p{font-size:14px;color:#dce9f8;margin:0} .member-portal-button{background:#fff;color:#17477f;border-radius:9px;padding:13px 16px;font-size:13px;font-weight:800;white-space:nowrap} .member-portal-button span{margin-left:8px} @media(max-width:600px){.business-title{font-size:26px}.member-portal{align-items:flex-start;flex-wrap:wrap;padding:18px}.member-portal-copy{min-width:calc(100% - 70px)}.member-portal-button{margin-left:64px}}
+
+.top-member-button{display:inline-flex;align-items:center;gap:9px;background:#173e60;color:#fff;border-radius:10px;padding:15px 19px;font-size:16px;font-weight:700;white-space:nowrap;box-shadow:0 4px 10px #102b4514;transition:background .2s,transform .2s}
+.top-member-button:hover{background:#2563eb;transform:translateY(-1px)}
+.member-button-icon{font-size:16px;line-height:1}
+@media(max-width:520px){.welcome{align-items:flex-start;gap:12px}.business-title{font-size:23px}.top-member-button{padding:11px 12px;font-size:12px;gap:6px}}
+
+
+/* Logo/icon-forward service cards */
+.service-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+.service-card{min-height:178px;padding:22px 18px;align-items:center;text-align:center;justify-content:center;gap:14px}
+.card-top{width:100%;justify-content:center;position:relative;min-height:76px}
+.service-icon{width:76px;height:76px;border-radius:20px;font-size:40px;box-shadow:0 6px 16px #173e6010}
+.popular-badge{position:absolute;top:-8px;right:-3px;padding:5px 7px;font-size:10px}
+.service-card h3{font-size:16px;line-height:1.4;margin:0;text-align:center}
+@media(min-width:1500px){.service-grid{grid-template-columns:repeat(5,minmax(0,1fr));gap:18px}.service-card{min-height:185px;padding:22px 16px}.service-icon{width:82px;height:82px;font-size:43px}}
+@media(max-width:1150px){.service-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.service-card{min-height:170px;padding:18px 12px}.service-icon{width:68px;height:68px;font-size:36px}}
+@media(max-width:780px){.service-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.service-card{min-height:160px;padding:17px 10px}.service-icon{width:64px;height:64px;font-size:34px}.popular-badge{top:-5px;right:-3px}}
+@media(max-width:430px){.service-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.service-card{min-height:150px;padding:14px 8px}.service-icon{width:58px;height:58px;font-size:31px}.service-card h3{font-size:14px}.popular-badge{font-size:9px;padding:4px 5px}}
+
+
+/* NBCE South Salmara logo asset */
+.brand-logo{width:58px;height:58px;object-fit:contain;flex-shrink:0;border-radius:50%;background:#fff}
+.brand{gap:12px;align-items:center}
+.brand-copy strong{font-size:15px;line-height:1.35}
+.main-brand{display:flex;align-items:center;gap:14px;min-width:0}
+.main-brand img{width:76px;height:76px;object-fit:contain;border-radius:50%;flex-shrink:0}
+@media(max-width:520px){.brand-logo{width:48px;height:48px}.main-brand{gap:8px}.main-brand img{width:54px;height:54px}.business-title{font-size:20px;letter-spacing:-.5px}}
+
+/* Consistent, clearly visible borders across all website sections */
+:root{--line:#d5e0ed}
+.sidebar{border-right:2px solid #294966}
+.brand{border-bottom:1px solid #35536f;margin-bottom:18px}
+.side-nav{padding:8px;border:1px solid #294966;border-radius:14px}
+.nav-link{border:1px solid transparent}
+.nav-link:hover,.nav-link.active{border-color:#54738e}
+.sidebar-help{border:1.5px solid #41627e}
+.welcome{padding:16px 18px;border:1.5px solid #d5e0ed;border-radius:16px;background:#fff;box-shadow:0 4px 14px #173e6008}
+.services-section{padding:20px;border:1.5px solid #d5e0ed;border-radius:16px;background:#fff;box-shadow:0 5px 18px #173e6008}
+.search-box{border:1.5px solid #cbd9e9}
+.filter{border:1.5px solid #cbd9e9}
+.filter:hover,.filter.active{border:1.5px solid #7ea6f5}
+.service-card{border:1.5px solid #d2deec;box-shadow:0 3px 10px #173e6008}
+.service-card:hover{border-color:#7fa6e8;box-shadow:0 9px 22px #173e6017}
+.service-icon{border:1.5px solid #d5e3f5}
+.popular-badge{border:1px solid #d6e0eb}
+.empty-state{border:1.5px dashed #b8c9dc}
+.info-strip{border:1.5px solid #c8dced;box-shadow:0 4px 12px #173e6008}
+.info-symbol{border:1px solid #b9d2f3}
+.contact-button{border:1.5px solid #173e60}
+.member-portal{border:1.5px solid #315f8b;box-shadow:0 6px 18px #173e6014}
+.member-portal-icon{border:1.5px solid #ffffff55}
+.member-portal-button{border:1.5px solid #d5e4f5}
+.footer{border-top:1.5px solid #d5e0ed;margin-top:22px}
+@media(max-width:780px){.services-section{padding:14px}.welcome{padding:13px}.service-card{border-width:1.5px}}
+
+  .service-title-link{color:inherit;text-decoration:none;display:inline-block}.service-title-link:hover{color:var(--blue);text-decoration:underline}
+  .service-card-clickable{color:inherit;text-decoration:none;cursor:pointer}
+  .service-card-clickable:focus-visible{outline:3px solid #2563eb;outline-offset:3px}
+  .service-card-clickable h3{color:#122943}
+  .service-card-clickable:hover h3{color:var(--blue)}
+  
+.about-footer{margin:38px -34px -26px;background:linear-gradient(115deg,#102b45,#0e6670);color:#fff;padding:34px 34px 18px}
+.about-intro{max-width:980px;margin:0 auto 42px;text-align:center}.about-intro h2{font-size:34px;margin:0 0 16px}.about-intro p{max-width:900px;margin:auto;color:#e0edf5;font-size:17px;line-height:1.85}
+.about-columns{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:42px;max-width:1200px;margin:auto;text-align:center;align-items:start}.about-column h3{font-size:24px;font-weight:800;margin:0 0 16px}.about-underline{display:block;width:46px;height:3px;background:#16c5d0;margin:0 auto 18px}.about-column>a{display:block;color:#e1edf5;font-size:17px;margin:13px 0;line-height:1.5}.about-column>a:hover{color:#75f0e5;text-decoration:underline}.about-column p{font-size:17px;line-height:1.8;color:#e7f0f7;margin:14px 0 22px}.about-column p strong{display:inline-block;margin-bottom:3px;color:#fff}.about-bottom{border-top:1px solid #ffffff30;margin:32px auto 0;padding-top:18px;text-align:center;font-size:14px;color:#c4d8e7}.directions-button{display:inline-flex!important;align-items:center;justify-content:center;gap:9px;margin:14px auto 0!important;padding:13px 19px;border-radius:9px;background:#fff;color:#123d5b!important;font-size:15px!important;font-weight:800;box-shadow:0 4px 14px #001a2b25}.directions-button:hover{background:#dff8fa;text-decoration:none!important}
+@media(max-width:780px){.about-footer{margin:30px -16px -26px;padding:30px 18px 18px}.about-columns{grid-template-columns:1fr;gap:32px}.about-intro{margin-bottom:34px}.about-intro h2{font-size:29px}.about-intro p{font-size:16px;line-height:1.8}.about-column h3{font-size:21px}.about-column>a,.about-column p{font-size:16px}.directions-button{font-size:15px!important}}
+
+  </style>
+</head>
+<body>
+  <aside class="sidebar" id="sidebar">
+    <a class="brand" href="#">
+      <img class="brand-logo" src="logo.png" alt="NBCE South Salmara logo">
+      <span class="brand-copy"><strong>NBCE South Salmara</strong><small>DIGITAL SERVICE CENTRE</small></span>
+    </a>
+    <div class="nav-caption">WORKSPACE</div>
+    <nav class="side-nav" aria-label="Main navigation">
+      <a class="nav-link active" href="#home"><span>⌂</span> Home</a>
+      <a class="nav-link" href="#services"><span>▦</span> All Services</a>
+      <a class="nav-link" href="#popular"><span>★</span> Popular Services</a>
+      <a class="nav-link" href="#certificates"><span>▤</span> Certificates</a>
+      <a class="nav-link" href="#contact"><span>☎</span> Contact Centre</a>
+    </nav>
+  </aside>
+
+  <main class="main" id="home">
+<div class="page-content">
+      <section class="welcome">
+        <div>
+          <div class="main-brand"><img src="logo.png" alt="NBCE South Salmara logo"><h1 class="business-title">NBCE South Salmara</h1></div>
+        </div>
+        <a class="top-member-button" href="member.html">
+          <span class="member-button-icon">♙</span>
+          Member Portal <span aria-hidden="true">→</span>
+        </a>
+      </section>
+
+      <section class="services-section" id="services">
+        <div class="section-heading">
+         
+          <label class="search-box"><span>⌕</span><input id="serviceSearch" type="search" placeholder="Search Aadhaar, PAN, bank..." aria-label="Search services"></label>
+        </div>
+        <div class="filter-row" id="filters">
+          <button class="filter active" data-filter="All Services">All Services</button>
+          <button class="filter" data-filter="Popular">★ Popular</button>
+          <button class="filter" data-filter="Identity">Government ID</button>
+          <button class="filter" data-filter="Banking">Banking</button>
+          <button class="filter" data-filter="Certificates">Certificates</button>
+          <button class="filter" data-filter="Travel">Travel & Tickets</button>
+          <button class="filter" data-filter="Online">Online Services</button>
+          <button class="filter" data-filter="Print">Print & Design</button>
+        </div>
+        <div class="service-grid" id="serviceGrid">
+          <!-- Cards are rendered from the service list below. -->
+        </div>
+        <div class="empty-state" id="emptyState" hidden>No services found. Try a different search.</div>
+      </section>
+    </div>
+
+      <section class="about-footer" id="about">
+        <div class="about-intro">
+          <h2>About Us</h2>
+          <p>NBCE South Salmara is a digital service centre providing convenient assistance with online applications, government services, document-related services and other digital needs. We aim to make accessing these services simple and helpful for our community. Please verify official requirements before applying.</p>
+        </div>
+        <div class="about-columns">
+          <div class="about-column"><h3>QUICK LINKS</h3><span class="about-underline"></span><a href="#home">Home</a><a href="#services">All Services</a><a href="member.html">Member Portal</a></div>
+          <div class="about-column"><h3>OUR SERVICES</h3><span class="about-underline"></span><a href="aadhaar-centre.html">Aadhaar Card</a><a href="pan-card-services.html">PAN Card</a><a href="voter-id-services.html">Voter ID Card</a><a href="income-certificate-services.html">Income Certificate</a><a href="iibf.html">IIBF Exam Centre</a></div>
+          <div class="about-column contact-column"><h3>CONTACT INFO</h3><span class="about-underline"></span><p><strong>Location</strong></p><a class="directions-button" href="https://www.google.com/maps/search/?api=1&query=NBCE%20South%20Salmara%2C%20Tumni%2C%20Tumni%20Simlakandi%2C%20Assam%20794104" target="_blank" rel="noopener">📍 Get Directions <span aria-hidden="true">↗</span></a><p><strong>Phone:</strong><br><a href="tel:9707532882">+91 9707532882</a><br><a href="tel:6003644722">+91 6003644722</a></p><p><strong>Email:</strong><br><a href="mailto:akhirulibf@gmail.com">akhirulibf@gmail.com</a></p></div>
+        </div>
+        <div class="about-bottom">© 2026 NBCE South Salmara · Digital Service Centre</div>
+      </section>
+  </main>
+
+  <script>
+    const serviceItems = [
+      {name:"Aadhaar Card",url:"aadhaar-centre.html",icon:"🪪",category:"Identity",popular:true,desc:""},
+      {name:"PAN Card",url:"pan-card-services.html",icon:"💳",category:"Identity",popular:true,desc:""},
+      {name:"Bank Services",url:"bank_services.html",icon:"🏦",category:"Banking",popular:true,desc:"Banking form assistance and guidance to authorised banking channels."},
+      {name:"Income Certificate",url:"income-certificate-services.html",icon:"📑",category:"Certificates",popular:true,desc:"Income certificate application guidance and document checklist."},
+      {name:"IIBF Exam Centre",url:"iibf.html",icon:"🏛️",category:"Online",popular:true,desc:"IIBF examination and exam-related services."},
+      {name:"Udyam Certificate",url:"udyam-services.html",icon:"📋",category:"Certificates",popular:true,desc:"Udyam registration assistance and document checklist."},
+      {name:"Driving Licence",url:"driving-licence-services.html",icon:"🚘",category:"Identity",popular:true,desc:"Learner licence, driving licence and renewal application assistance."},
+      {name:"Voter ID Card",url:"voter-id-services.html",icon:"🗳️",category:"Identity",popular:true,desc:"Voter registration, correction and electoral service guidance."},
+      
+    ];
+    let activeFilter = "All Services";
+    const grid = document.getElementById("serviceGrid");
+    const search = document.getElementById("serviceSearch");
+    const empty = document.getElementById("emptyState");
+
+    function renderServices(){
+      const term = search.value.trim().toLowerCase();
+      const list = serviceItems.filter(s => {
+        const categoryMatch = activeFilter === "All Services" ||
+          (activeFilter === "Popular" && s.popular) ||
+          (activeFilter !== "Popular" && s.category === activeFilter);
+        return categoryMatch && (s.name + " " + s.desc + " " + s.category).toLowerCase().includes(term);
+      });
+      grid.innerHTML = list.map(s => `
+        <a class="service-card service-card-clickable" href="${s.url || '#'}" aria-label="Open ${s.name}">
+          <div class="card-top">
+            <span class="service-icon">${s.icon}</span>
+            ${s.popular ? '<span class="popular-badge"><span>★</span> Popular</span>' : ''}
+          </div>
+          <h3>${s.name}</h3>
+        </a>`).join("");
+      empty.hidden = list.length > 0;
+    }
+    document.querySelectorAll(".filter").forEach(btn => btn.addEventListener("click", () => {
+      document.querySelectorAll(".filter").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active"); activeFilter = btn.dataset.filter; renderServices();
+    }));
+    search.addEventListener("input", renderServices);
+
+    renderServices();
+  </script>
+</body>
+</html>

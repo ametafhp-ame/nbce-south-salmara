@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Book Exam Seat | IIBF South Salmara Exam Centre</title>
+<style>
+:root{--navy:#102b59;--blue:#1e5298;--border:#dce6f3;--text:#15233b;--muted:#5b6e89}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{margin:0;min-height:100vh;padding:clamp(10px,3vw,22px);font-family:Arial,Helvetica,sans-serif;color:var(--text);background:linear-gradient(135deg,#f2f7ff,#fff 55%,#edf4ff)}
+.card{width:min(100%,650px);margin:clamp(4px,2vh,20px) auto;padding:clamp(16px,4vw,28px);background:#fff;border:1px solid var(--border);border-radius:clamp(12px,3vw,18px);box-shadow:0 12px 35px #102b5917}
+header{text-align:center}
+.logo{width:clamp(52px,14vw,64px);height:clamp(52px,14vw,64px);object-fit:contain}
+h1{font-size:clamp(22px,5.5vw,26px);line-height:1.2;color:var(--navy);margin:10px 0}
+p{line-height:1.55;margin:8px 0 18px}
+.muted{color:var(--muted);font-size:14px}
+label{display:block;font-size:14px;font-weight:700;margin:16px 0 7px}
+input,select,textarea{display:block;width:100%;min-width:0;min-height:48px;padding:12px;border:1px solid #cbd5e1;border-radius:9px;font:inherit;font-size:16px;color:var(--text);background:#fff}
+textarea{min-height:100px;resize:vertical}
+input:focus,select:focus,textarea:focus{outline:2px solid #8db7f0;outline-offset:1px;border-color:var(--blue)}
+.btn{display:flex;align-items:center;justify-content:center;width:100%;min-height:48px;border:0;border-radius:10px;padding:13px 16px;font-size:15px;line-height:1.35;font-weight:700;cursor:pointer;text-align:center;text-decoration:none;margin-top:14px;overflow-wrap:anywhere}
+.primary{background:var(--navy);color:#fff}
+.secondary{background:#fff;border:1px solid var(--border);color:var(--navy)}
+.btn:disabled{opacity:.6;cursor:wait}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 14px}
+.status{display:none;padding:13px;border-radius:9px;background:#f1f6ff;overflow-wrap:anywhere;margin-top:15px;font-size:14px;line-height:1.5}
+.status.show{display:block}.error{background:#fff1f1;color:#9b1c1c}.ok{background:#edfff4;color:#116334}
+.note{padding:12px;background:#f3f7ff;border-radius:9px;font-size:13px;color:var(--muted)}
+@media(max-width:560px){body{padding:10px}.card{margin:4px auto;padding:18px 15px;border-radius:14px}.grid{grid-template-columns:minmax(0,1fr);gap:0}.btn{font-size:14px;padding:13px 12px}label{margin-top:14px}}
+@media(max-width:360px){body{padding:6px}.card{padding:15px 12px}h1{font-size:21px}.muted{font-size:13px}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto}}
+</style></head>
+<body><main class="card">
+<header><img class="logo" src="logo.png" alt="NBCE South Salmara logo"><h1>Book an Exam Seat</h1><p class="muted">IIBF South Salmara Exam Centre</p></header>
+
+<form id="bookingForm">
+ <label for="studentName">Student Full Name *</label><input id="studentName" maxlength="100" required autocomplete="name" placeholder="Enter full name">
+ <label for="whatsappNumber">WhatsApp Number *</label><div style="display:flex;align-items:center;border:1px solid #cbd5e1;border-radius:9px;overflow:hidden"><span style="padding:0 12px;background:#f3f7ff;min-height:48px;display:flex;align-items:center;font-weight:700;color:var(--navy);border-right:1px solid #cbd5e1">+91</span><input id="whatsappNumber" type="tel" inputmode="numeric" maxlength="10" pattern="[6-9][0-9]{9}" required placeholder="10-digit mobile number" style="border:0;border-radius:0;flex:1;min-width:0"></div>
+ <div class="grid">
+  <div><label for="mobileNumber">Mobile Number *</label><input id="mobileNumber" type="tel" inputmode="numeric" maxlength="10" pattern="[6-9][0-9]{9}" required placeholder="10-digit mobile number"></div>
+  <div><label for="studentEmail">Email ID *</label><input id="studentEmail" type="email" maxlength="150" required autocomplete="email" placeholder="Enter email address"></div>
+ </div>
+ <label for="aadhaarPhoto">Aadhaar Card Photo *</label><input id="aadhaarPhoto" type="file" accept="image/jpeg,image/png,image/webp,application/pdf" required>
+ <label for="panPhoto">PAN Card Photo *</label><input id="panPhoto" type="file" accept="image/jpeg,image/png,image/webp,application/pdf" required>
+ <div class="grid">
+  <div><label for="passportPhoto">Passport Size Photo *</label><input id="passportPhoto" type="file" accept="image/jpeg,image/png,image/webp" required></div>
+  <div><label for="signaturePhoto">Signature *</label><input id="signaturePhoto" type="file" accept="image/jpeg,image/png,image/webp" required></div>
+ </div>
+ <label for="biodata">Bio-Data (optional)</label><input id="biodata" type="file" accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
+ <label for="examCenter">Exam Centre *</label><select id="examCenter" required><option value="">Select exam centre</option><option>South Salmara</option><option>Goalpara</option><option>Guwahati</option></select>
+ <label for="examDate">Available Exam Date *</label><select id="examDate" required><option value="">Loading available dates…</option></select>
+ <div id="uploadPanel" class="note" style="display:none;margin-top:16px">
+  <div style="display:flex;justify-content:space-between;gap:12px;margin-bottom:8px"><strong id="uploadLabel">Uploading documents…</strong><strong id="uploadPercent">0%</strong></div>
+  <div style="height:10px;background:#dce6f3;border-radius:99px;overflow:hidden"><div id="uploadBar" style="height:100%;width:0%;background:#1e5298;transition:width .15s"></div></div>
+  <button class="btn secondary" type="button" id="cancelUpload">Cancel Upload</button>
+ </div>
+ <button class="btn primary" id="submitButton" type="submit">Submit Seat Booking Request</button>
+</form>
+<div id="status" class="status" role="status" aria-live="polite"></div>
+<a class="btn secondary" href="iibf.html">Back to IIBF Services</a>
+
+</main>
+<script type="module">
+import {initializeApp} from "https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js";
+import {getFirestore,collection,addDoc,serverTimestamp} from "https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js";
+import {getStorage,ref,uploadBytesResumable,getDownloadURL,deleteObject} from "https://www.gstatic.com/firebasejs/13.0.0/firebase-storage.js";
+const firebaseConfig={apiKey:"AIzaSyD5mCY4ivrzhIf2iKRiqkH7YcEsYVLa5QQ",authDomain:"iibf-c118e.firebaseapp.com",projectId:"iibf-c118e",storageBucket:"iibf-c118e.firebasestorage.app",messagingSenderId:"668083906996",appId:"1:668083906996:web:f54eafd9f4f10af82feae1",measurementId:"G-593SFKSZZ0"};
+const app=initializeApp(firebaseConfig),db=getFirestore(app),storage=getStorage(app);
+const $=id=>document.getElementById(id);
+const listedDates=["2026-10-21","2026-10-22","2026-10-23","2026-10-26","2026-10-27","2026-10-28","2026-10-29","2026-10-30"];
+function localDateString(date){const y=date.getFullYear(),m=String(date.getMonth()+1).padStart(2,"0"),d=String(date.getDate()).padStart(2,"0");return `${y}-${m}-${d}`;}
+function prettyDate(iso){return new Date(iso+"T12:00:00").toLocaleDateString("en-IN",{day:"numeric",month:"long",year:"numeric"});}
+function loadDates(){
+ const today=new Date();today.setHours(0,0,0,0);const earliest=new Date(today);earliest.setDate(earliest.getDate()+6);
+ const available=listedDates.filter(d=>d>=localDateString(earliest));const select=$("examDate");select.replaceChildren();
+ const first=document.createElement("option");first.value="";first.textContent=available.length?"Select an exam date":"No dates currently available";first.disabled=true;first.selected=true;select.append(first);
+ available.forEach(d=>{const opt=document.createElement("option");opt.value=d;opt.textContent=prettyDate(d);select.append(opt);});
+ const discuss=document.createElement("option");discuss.value="discuss";discuss.textContent="I will discuss with the centre";select.append(discuss);
+}
+function status(message,type=""){const s=$("status");s.textContent=message;s.className="status show"+(type?" "+type:"");}
+let activeTasks=[],cancelRequested=false,uploadedPaths=[];
+function setProgress(p,label){$("uploadPanel").style.display="block";$("uploadPercent").textContent=Math.round(p)+"%";$("uploadBar").style.width=Math.max(0,Math.min(100,p))+"%";if(label)$("uploadLabel").textContent=label;}
+function hideProgressLater(){setTimeout(()=>{$("uploadPanel").style.display="none";},2000);}
+$("cancelUpload").addEventListener("click",()=>{cancelRequested=true;activeTasks.forEach(t=>{try{t.cancel()}catch{}});$("uploadLabel").textContent="Upload cancelled. You can choose photos again."; $("submitButton").disabled=false;});
+loadDates();
+$("bookingForm").addEventListener("submit",async e=>{
+ e.preventDefault();const btn=$("submitButton");if(!e.currentTarget.reportValidity())return;
+ const wa=$("whatsappNumber").value.trim(),mobile=$("mobileNumber").value.trim();
+ if(!/^[6-9]\d{9}$/.test(wa)||!/^[6-9]\d{9}$/.test(mobile)){status("Enter valid 10-digit Indian mobile numbers.","error");return;}
+ const chosen=$("examDate").value;if(!chosen){status("Please select an exam date or choose “I will discuss with the centre”.","error");return;}
+ const today=new Date();today.setHours(0,0,0,0);const earliest=new Date(today);earliest.setDate(earliest.getDate()+6);
+ if(chosen!=="discuss"&&chosen<localDateString(earliest)){status("Please choose a date at least 6 days from today.","error");loadDates();return;}
+ const fields=[["aadhaarPhoto","aadhaar"],["panPhoto","pan"],["passportPhoto","passport"],["signaturePhoto","signature"],["biodata","biodata"]];
+ const files=fields.map(([id,key])=>({id,key,file:$(id).files[0]})).filter(x=>x.file);
+ for(const item of files){if(item.file.size>10*1024*1024){status(item.file.name+" exceeds the 10 MB limit.","error");return;}}
+ btn.disabled=true;cancelRequested=false;activeTasks=[];uploadedPaths=[];status("Uploading documents. Please keep this page open.");
+ try{
+  const uploaded={};let completed=0,totalBytes=files.reduce((sum,x)=>sum+x.file.size,0)||1;
+  for(const item of files){
+   if(cancelRequested)throw new Error("Upload cancelled.");
+   const safeName=item.file.name.replace(/[^a-zA-Z0-9._-]/g,"_");
+   const path="iibf-bookings/"+Date.now()+"_"+Math.random().toString(36).slice(2,9)+"/"+item.key+"_"+safeName;
+   uploadedPaths.push(path);
+   const task=uploadBytesResumable(ref(storage,path),item.file,{contentType:item.file.type||"application/octet-stream"});activeTasks.push(task);
+   const url=await new Promise((resolve,reject)=>{
+    task.on("state_changed",snap=>{const current=completed+snap.bytesTransferred;setProgress(current/totalBytes*100,"Uploading "+item.key+"…");},reject,async()=>{try{resolve(await getDownloadURL(task.snapshot.ref));}catch(err){reject(err);}});
+   });
+   uploaded[item.key]={fileName:item.file.name,storagePath:path,downloadURL:url,contentType:item.file.type,size:item.file.size};completed+=item.file.size;
+  }
+  if(cancelRequested)throw new Error("Upload cancelled.");
+  const docRef=await addDoc(collection(db,"seatBookings"),{
+   studentName:$("studentName").value.trim(),whatsappNumber:"+91"+wa,mobileNumber:"+91"+mobile,email:$("studentEmail").value.trim(),
+   documents:uploaded,examCenter:$("examCenter").value,examDate:chosen==="discuss"?"I will discuss with the centre":chosen,status:"pending",createdAt:serverTimestamp()
+  });
+  setProgress(100,"Upload complete");status("Request submitted successfully. Reference: "+docRef.id+". The centre team will review your request. Your seat is not confirmed until the centre confirms it.","ok");
+  $("bookingForm").reset();loadDates();hideProgressLater();
+ }catch(err){
+  if(cancelRequested||err.code==="storage/canceled"){status("Upload cancelled. You can select photos again and resubmit.","error");}
+  else{status("Could not submit the request: "+(err.code||err.message)+". Check Firebase Storage/Firestore rules and try again.","error");}
+  await Promise.all(uploadedPaths.map(path=>deleteObject(ref(storage,path)).catch(()=>{})));
+  $("uploadPanel").style.display="none";
+ }finally{btn.disabled=false;activeTasks=[];}
+});
+</script></body></html>
