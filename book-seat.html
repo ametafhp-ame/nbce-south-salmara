@@ -61,12 +61,14 @@ input:focus,select:focus,textarea:focus{outline:2px solid #8db7f0;outline-offset
 
 </main>
 <script type="module">
-import {initializeApp} from "https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js";
-import {getFirestore,collection,addDoc,serverTimestamp} from "https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js";
-import {getStorage,ref,uploadBytesResumable,getDownloadURL,deleteObject} from "https://www.gstatic.com/firebasejs/13.0.0/firebase-storage.js";
-const firebaseConfig={apiKey:"AIzaSyD5mCY4ivrzhIf2iKRiqkH7YcEsYVLa5QQ",authDomain:"iibf-c118e.firebaseapp.com",projectId:"iibf-c118e",storageBucket:"iibf-c118e.firebasestorage.app",messagingSenderId:"668083906996",appId:"1:668083906996:web:f54eafd9f4f10af82feae1",measurementId:"G-593SFKSZZ0"};
-const app=initializeApp(firebaseConfig),db=getFirestore(app),storage=getStorage(app);
-const $=id=>document.getElementById(id);
+import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+// Uses the existing NBCE South Salmara Supabase project.
+const SUPABASE_URL = "https://hizimlfplecwyqdjvaze.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_nV764Rar0ofHGPJAkukczA_vYA_ztNU";
+const BUCKET = "customer-documents"; // Keep this bucket PRIVATE.
+const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+const $ = id => document.getElementById(id);
 const listedDates=["2026-10-21","2026-10-22","2026-10-23","2026-10-26","2026-10-27","2026-10-28","2026-10-29","2026-10-30"];
 function localDateString(date){const y=date.getFullYear(),m=String(date.getMonth()+1).padStart(2,"0"),d=String(date.getDate()).padStart(2,"0");return `${y}-${m}-${d}`;}
 function prettyDate(iso){return new Date(iso+"T12:00:00").toLocaleDateString("en-IN",{day:"numeric",month:"long",year:"numeric"});}
@@ -78,10 +80,10 @@ function loadDates(){
  const discuss=document.createElement("option");discuss.value="discuss";discuss.textContent="I will discuss with the centre";select.append(discuss);
 }
 function status(message,type=""){const s=$("status");s.textContent=message;s.className="status show"+(type?" "+type:"");}
-let activeTasks=[],cancelRequested=false,uploadedPaths=[];
+let cancelRequested=false, uploadedPaths=[];
 function setProgress(p,label){$("uploadPanel").style.display="block";$("uploadPercent").textContent=Math.round(p)+"%";$("uploadBar").style.width=Math.max(0,Math.min(100,p))+"%";if(label)$("uploadLabel").textContent=label;}
-function hideProgressLater(){setTimeout(()=>{$("uploadPanel").style.display="none";},2000);}
-$("cancelUpload").addEventListener("click",()=>{cancelRequested=true;activeTasks.forEach(t=>{try{t.cancel()}catch{}});$("uploadLabel").textContent="Upload cancelled. You can choose photos again."; $("submitButton").disabled=false;});
+function hideProgressLater(){setTimeout(()=>{$("uploadPanel").style.display="none";},2500);}
+$("cancelUpload").addEventListener("click",()=>{cancelRequested=true;$("uploadLabel").textContent="Cancellation requested. Please wait for the current upload to finish.";$("submitButton").disabled=true;});
 loadDates();
 $("bookingForm").addEventListener("submit",async e=>{
  e.preventDefault();const btn=$("submitButton");if(!e.currentTarget.reportValidity())return;
@@ -93,32 +95,44 @@ $("bookingForm").addEventListener("submit",async e=>{
  const fields=[["aadhaarPhoto","aadhaar"],["panPhoto","pan"],["passportPhoto","passport"],["signaturePhoto","signature"],["biodata","biodata"]];
  const files=fields.map(([id,key])=>({id,key,file:$(id).files[0]})).filter(x=>x.file);
  for(const item of files){if(item.file.size>10*1024*1024){status(item.file.name+" exceeds the 10 MB limit.","error");return;}}
- btn.disabled=true;cancelRequested=false;activeTasks=[];uploadedPaths=[];status("Uploading documents. Please keep this page open.");
+ btn.disabled=true;cancelRequested=false;uploadedPaths=[];status("Uploading documents to secure storage. Please keep this page open.");
  try{
-  const uploaded={};let completed=0,totalBytes=files.reduce((sum,x)=>sum+x.file.size,0)||1;
+  const uploaded={};let completedBytes=0,totalBytes=files.reduce((sum,x)=>sum+x.file.size,0)||1;
+  const folder=`iibf-bookings/${Date.now()}_${crypto.randomUUID()}`;
   for(const item of files){
-   if(cancelRequested)throw new Error("Upload cancelled.");
+   if(cancelRequested)throw new Error("Upload cancelled by user.");
    const safeName=item.file.name.replace(/[^a-zA-Z0-9._-]/g,"_");
-   const path="iibf-bookings/"+Date.now()+"_"+Math.random().toString(36).slice(2,9)+"/"+item.key+"_"+safeName;
-   uploadedPaths.push(path);
-   const task=uploadBytesResumable(ref(storage,path),item.file,{contentType:item.file.type||"application/octet-stream"});activeTasks.push(task);
-   const url=await new Promise((resolve,reject)=>{
-    task.on("state_changed",snap=>{const current=completed+snap.bytesTransferred;setProgress(current/totalBytes*100,"Uploading "+item.key+"…");},reject,async()=>{try{resolve(await getDownloadURL(task.snapshot.ref));}catch(err){reject(err);}});
-   });
-   uploaded[item.key]={fileName:item.file.name,storagePath:path,downloadURL:url,contentType:item.file.type,size:item.file.size};completed+=item.file.size;
+   const path=`${folder}/${item.key}_${safeName}`;
+   const {error:uploadError}=await supabase.storage.from(BUCKET).upload(path,item.file,{contentType:item.file.type||"application/octet-stream",upsert:false});
+   if(uploadError)throw uploadError;
+   uploadedPaths.push(path);completedBytes+=item.file.size;
+   setProgress(completedBytes/totalBytes*100,"Uploaded "+item.key+"…");
   }
-  if(cancelRequested)throw new Error("Upload cancelled.");
-  const docRef=await addDoc(collection(db,"seatBookings"),{
-   studentName:$("studentName").value.trim(),whatsappNumber:"+91"+wa,mobileNumber:"+91"+mobile,email:$("studentEmail").value.trim(),
-   documents:uploaded,examCenter:$("examCenter").value,examDate:chosen==="discuss"?"I will discuss with the centre":chosen,status:"pending",createdAt:serverTimestamp()
-  });
-  setProgress(100,"Upload complete");status("Request submitted successfully. Reference: "+docRef.id+". The centre team will review your request. Your seat is not confirmed until the centre confirms it.","ok");
+  if(cancelRequested)throw new Error("Upload cancelled by user.");
+  const documents={};
+  for(const item of files){
+   const safeName=item.file.name.replace(/[^a-zA-Z0-9._-]/g,"_");
+   documents[item.key]={fileName:item.file.name,storagePath:`${folder}/${item.key}_${safeName}`,contentType:item.file.type||"application/octet-stream",size:item.file.size};
+  }
+  const payload={
+   student_name:$("studentName").value.trim(),
+   whatsapp_number:"+91"+wa,
+   mobile_number:"+91"+mobile,
+   email:$("studentEmail").value.trim(),
+   documents,
+   exam_center:$("examCenter").value,
+   exam_date:chosen==="discuss"?"I will discuss with the centre":chosen,
+   status:"pending"
+  };
+  const {data,error:insertError}=await supabase.from("seat_bookings").insert(payload).select("id").single();
+  if(insertError)throw insertError;
+  setProgress(100,"Upload complete");status("Request submitted successfully. Reference: "+data.id+". The centre team will review your request. Your seat is not confirmed until the centre confirms it.","ok");
   $("bookingForm").reset();loadDates();hideProgressLater();
  }catch(err){
-  if(cancelRequested||err.code==="storage/canceled"){status("Upload cancelled. You can select photos again and resubmit.","error");}
-  else{status("Could not submit the request: "+(err.code||err.message)+". Check Firebase Storage/Firestore rules and try again.","error");}
-  await Promise.all(uploadedPaths.map(path=>deleteObject(ref(storage,path)).catch(()=>{})));
+  const message=err?.message||String(err);
+  status("Could not submit the request: "+message+". Check the Supabase SQL setup and Storage policies.","error");
+  if(uploadedPaths.length){const {error:cleanupError}=await supabase.storage.from(BUCKET).remove(uploadedPaths);if(cleanupError)console.warn("Could not remove partial uploads:",cleanupError.message);}
   $("uploadPanel").style.display="none";
- }finally{btn.disabled=false;activeTasks=[];}
+ }finally{btn.disabled=false;cancelRequested=false;}
 });
 </script></body></html>
