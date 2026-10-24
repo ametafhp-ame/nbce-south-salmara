@@ -124,9 +124,12 @@ $("bookingForm").addEventListener("submit",async e=>{
    exam_date:chosen==="discuss"?"I will discuss with the centre":chosen,
    status:"pending"
   };
-  const {data,error:insertError}=await supabase.from("seat_bookings").insert(payload).select("id").single();
+  // Submit through a narrowly scoped Supabase RPC. This avoids granting
+  // public users SELECT access to private booking records just to get an ID.
+  const {data,error:insertError}=await supabase.rpc("submit_seat_booking",{payload});
   if(insertError)throw insertError;
-  setProgress(100,"Upload complete");status("Request submitted successfully. Reference: "+data.id+". The centre team will review your request. Your seat is not confirmed until the centre confirms it.","ok");
+  if(typeof data!=="string"||!data)throw new Error("Booking was saved but no reference ID was returned. Please contact the centre before submitting again.");
+  setProgress(100,"Upload complete");status("Request submitted successfully. Reference: "+data+". The centre team will review your request. Your seat is not confirmed until the centre confirms it.","ok");
   $("bookingForm").reset();loadDates();hideProgressLater();
  }catch(err){
   const message=err?.message||String(err);
